@@ -41,7 +41,7 @@ public class HandMovement : MonoBehaviour
 
     void Update()
     {
-        mouseScreenPosition = Input.mousePosition;    
+        mouseScreenPosition = Input.mousePosition;
     }
 
     void FixedUpdate()
@@ -64,5 +64,11 @@ public class HandMovement : MonoBehaviour
         targetWorldPosition = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
         Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetWorldPosition, handMovementSpeed * Time.fixedDeltaTime);
         rb.MovePosition(smoothedPosition);
+    }
+
+    private float calculateHandSpeed()
+    {
+        // More heavy the object the slower the movement
+        return 0f;
     }
 }

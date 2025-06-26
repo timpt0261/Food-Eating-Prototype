@@ -1,29 +1,29 @@
 using UnityEngine;
 
-public class Interactor : MonoBehaviour
+public class HandPickUp : MonoBehaviour
 {
+
+    [Header("References")]
+    private PickUpInteraction _playerPickUpInteraction;
+    private bool isPlayerHoldingObject;
+
+    [Header("Collider Handling")]
     [SerializeField] private Transform _interactionPoint;
     [SerializeField] private Vector3 _interactionPointSize;
     [SerializeField] private LayerMask _interactableMask;
 
     private readonly Collider[] _colliders = new Collider[3];
-    [SerializeField] private int _numfound;
+    private int _numfound;
+
+    [Header("Input Handling")]
+    [SerializeField] private bool interact;
 
     private FoodObject _interactable;
     private GameObject _interactable_Obj;
 
-    private GameObject _interaction_Ui;
 
-    private bool interact;
-
-
-
-    private PickUpInteraction _playerPickUpInteraction;
-
-
-    private void Start()
+    private void Awake()
     {
-
         _playerPickUpInteraction = GetComponent<PickUpInteraction>();
     }
 
@@ -31,11 +31,14 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         interact = Input.GetMouseButton(0);
-        // _numfound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
         _numfound = Physics.OverlapBoxNonAlloc(_interactionPoint.position, _interactionPointSize, _colliders, Quaternion.identity, _interactableMask);
-        bool isPlayerHoldingObject = _playerPickUpInteraction.IsHoldingObject();
-        /*Debug.Log("NumFound: " + _numfound + " Is Holding Object: "  + isPlayerHoldingObject );*/
+        isPlayerHoldingObject = _playerPickUpInteraction.IsHoldingObject();
 
+        Interaction();
+    }
+
+    private void Interaction()
+    {
         if (_numfound == 0 && !isPlayerHoldingObject)
         {
             ClearInteract();
@@ -45,14 +48,24 @@ public class Interactor : MonoBehaviour
         if (_interactable == null && !isPlayerHoldingObject)
         {
             SetInteractable(_colliders[0]);
-
+            return;
         }
 
         if (_interactable != null)
         {
             HandleInteractable(isPlayerHoldingObject);
+            return;
         }
 
+    }
+
+    private void ClearInteract()
+    {
+        if (_interactable != null)
+        {
+            _interactable = null;
+            _interactable_Obj = null;
+        }
     }
 
     private void SetInteractable(Collider collider)
@@ -61,27 +74,13 @@ public class Interactor : MonoBehaviour
         _interactable_Obj = collider.gameObject;
     }
 
-    private void ClearInteract()
-    {
-        if (_interactable != null)
-        {
-            _interactable = null;
-        }
-    }
 
     private void HandleInteractable(bool isPlayerHoldingObject)
     {
         _interactable.Interact(this);
-        Debug.Log("Interactable is not null");
+        if (interact) { HandleInteractOn(isPlayerHoldingObject); return; }
+        HandleInteractOff(isPlayerHoldingObject);
 
-        if (interact)
-        {
-            HandleInteractOn(isPlayerHoldingObject);
-        }
-        else
-        {
-            HandleInteractOff(isPlayerHoldingObject);
-        }
     }
 
     private void HandleInteractOn(bool isPlayerHoldingObject)
@@ -94,8 +93,7 @@ public class Interactor : MonoBehaviour
 
     private void HandleInteractOff(bool isPlayerHoldingObject)
     {
-        Debug.Log("Off");
-        if (_interactable_Obj.CompareTag("Toys") && isPlayerHoldingObject)
+        if (isPlayerHoldingObject)
             _playerPickUpInteraction.DropObject();
     }
 

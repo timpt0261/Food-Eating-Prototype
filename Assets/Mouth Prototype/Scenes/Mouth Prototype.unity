@@ -1967,9 +1967,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1430100108035534306, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3458702375037450720, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: range
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3458702375037450720, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: pickupForce
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3458702375037450720, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: holdAreaRadius

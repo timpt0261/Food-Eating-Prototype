@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
-	public void Interact(Interactor interactor);
+	public void Interact(HandPickUp interactor);
 
 }
 

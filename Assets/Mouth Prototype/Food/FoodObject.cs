@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 [RequireComponent(typeof(Rigidbody))]
 public class FoodObject : MonoBehaviour, IInteractable, IEdible
 {
-    private Interactor interactor;
+    private HandPickUp interactor;
     private Rigidbody rb;
 
     public Rigidbody Rb => rb;
@@ -20,7 +20,7 @@ public class FoodObject : MonoBehaviour, IInteractable, IEdible
         rb = GetComponent<Rigidbody>();
     }
 
-    public void Interact(Interactor interactor)
+    public void Interact(HandPickUp interactor)
     {
         this.interactor = interactor;
     }

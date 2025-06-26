@@ -1,17 +1,27 @@
 using UnityEngine;
-
-
 public class PickUpInteraction : MonoBehaviour
 {
-	
-	[SerializeField] Transform holdArea = null;
+
+    [SerializeField]
+    private HandMovement handMovement;
+
+    [Header("Hold Object")]
+    [SerializeField] Transform holdArea = null;
     [SerializeField] float holdAreaRadius = 5.0f;
     [SerializeField] private GameObject heldObject = null;
     private Rigidbody heldObjectRigidbody = null;
-    [SerializeField] private float pickupForce = 150.0f;
 
     [Range(0.01f, 1f)]
     [SerializeField] private float range = 0.1f;
+
+
+    [Range(0, 1000)]
+    [SerializeField] private int pickupForce = 150;
+
+    void Awake()
+    {
+        handMovement = GetComponent<HandMovement>();
+    }
 
     public bool IsHoldingObject()
     {
@@ -19,35 +29,30 @@ public class PickUpInteraction : MonoBehaviour
     }
 
     public void MoveObject()
-	{
-		// Debug.Log("Moving object");
-		if (heldObjectRigidbody == null)
-			return;
+    {
+        // Debug.Log("Moving object");
+        if (heldObjectRigidbody == null)
+            return;
 
-		if (Vector3.Distance(heldObject.transform.position, holdArea.position) > range)
+        if (Vector3.Distance(heldObject.transform.position, holdArea.position) > range)
         {
             Vector3 moveDirection = holdArea.position - heldObject.transform.position;
             heldObjectRigidbody.AddForce(moveDirection * pickupForce);
+            // Vector3 targetPostion = Vector3.Lerp(holdArea.position, heldObject.transform.position, Time.deltaTime * pickupForce);
+            // heldObjectRigidbody.MovePosition(targetPostion);
         }
 
-	}
+    }
 
 
-	public void PickUpObject(GameObject pickObj)
+    public void PickUpObject(GameObject pickObj)
     {
         Debug.Log("Picking Up object");
-        Rigidbody pickObjRB = pickObj.GetComponent<Rigidbody>();
-        CharacterController pickObjController = pickObj.GetComponent<CharacterController>();
+        pickObj.TryGetComponent<Rigidbody>(out Rigidbody pickObjRB);
 
         if (!pickObjRB) return;
-
         heldObjectRigidbody = pickObjRB;
-        heldObjectRigidbody.useGravity = false;
-        heldObjectRigidbody.linearDamping = 10;
-        heldObjectRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-
-        heldObjectRigidbody.transform.parent = holdArea;
-        heldObject = pickObj;
+        updateHeldObjectRigidBody(pickObj, true);
 
     }
 
@@ -55,12 +60,17 @@ public class PickUpInteraction : MonoBehaviour
     {
         Debug.Log("Droping Object");
         if (heldObjectRigidbody == null) return;
+        updateHeldObjectRigidBody(null, false);
+    }
 
-        heldObjectRigidbody.useGravity = true;
-        heldObjectRigidbody.linearDamping = 1;
-        heldObjectRigidbody.constraints = RigidbodyConstraints.None;
-        heldObjectRigidbody.transform.parent = null;
-        heldObject = null;
+    private void updateHeldObjectRigidBody(GameObject pickObj, bool handle)
+    {
+
+        heldObjectRigidbody.useGravity = !handle;
+        heldObjectRigidbody.linearDamping = handle ? 10 : 1;
+        heldObjectRigidbody.constraints = handle ? RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.None;
+        heldObjectRigidbody.transform.parent = handle ? holdArea : null;
+        heldObject = handle ? pickObj : null;
 
     }
 
