@@ -3,13 +3,13 @@ using UnityEngine;
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private Transform _interactionPoint;
-    [SerializeField] private float _interactionPointRadius = 0.5f;
+    [SerializeField] private Vector3 _interactionPointSize;
     [SerializeField] private LayerMask _interactableMask;
 
     private readonly Collider[] _colliders = new Collider[3];
     [SerializeField] private int _numfound;
 
-    private IInteractable _interactable;
+    private FoodObject _interactable;
     private GameObject _interactable_Obj;
 
     private GameObject _interaction_Ui;
@@ -19,11 +19,11 @@ public class Interactor : MonoBehaviour
 
 
     private PickUpInteraction _playerPickUpInteraction;
-    
+
 
     private void Start()
     {
-        
+
         _playerPickUpInteraction = GetComponent<PickUpInteraction>();
     }
 
@@ -31,7 +31,8 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         interact = Input.GetMouseButton(0);
-        _numfound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
+        // _numfound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactableMask);
+        _numfound = Physics.OverlapBoxNonAlloc(_interactionPoint.position, _interactionPointSize, _colliders, Quaternion.identity, _interactableMask);
         bool isPlayerHoldingObject = _playerPickUpInteraction.IsHoldingObject();
         /*Debug.Log("NumFound: " + _numfound + " Is Holding Object: "  + isPlayerHoldingObject );*/
 
@@ -54,9 +55,9 @@ public class Interactor : MonoBehaviour
 
     }
 
-    private void SetInteractable( Collider collider)
+    private void SetInteractable(Collider collider)
     {
-        _interactable = collider.GetComponent<IInteractable>();
+        _interactable = collider.GetComponent<FoodObject>();
         _interactable_Obj = collider.gameObject;
     }
 
@@ -98,10 +99,16 @@ public class Interactor : MonoBehaviour
             _playerPickUpInteraction.DropObject();
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(_interactionPoint.position, _interactionPointRadius);
+        if (_interactionPoint == null) return;
+
+        Gizmos.color = Color.yellow;
+
+        // Draw a wire cube representing the OverlapBox
+        Gizmos.matrix = Matrix4x4.TRS(_interactionPoint.position, Quaternion.identity, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, _interactionPointSize * 2); // Multiply by 2 because size is half-extents in OverlapBox
     }
+
 
 }

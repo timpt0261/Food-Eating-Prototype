@@ -24,25 +24,27 @@ public class HandleInteraction : MonoBehaviour
 	void OnTriggerEnter(Collider other)
 	{
 
-		 if (((1 << other.gameObject.layer) & intractableLayer) != 0 && other.CompareTag("FoodItems"))
+		if (((1 << other.gameObject.layer) & intractableLayer) != 0 && other.CompareTag("FoodItems"))
 		{
 			Debug.Log($"{other.gameObject.name} Entering");
 
 			if (go_interacting != null || b_isInteracting == true) return;
 
 			b_isInteracting = true;
-			go_interacting = other.gameObject;
-			go_interacting.transform.parent = this.transform;
+			// go_interacting = other.gameObject;
+			// go_interacting.transform.parent = this.transform;
+			// go_interacting.transform.localPosition = this.transform.position;
+			// go_interacting.transform.localRotation = this.transform.rotation;
 
-			go_interacting.TryGetComponent<Rigidbody>(out Rigidbody rb);
-			if (rb == null)
-			{
-				return;
-			}
-			rb_intractable = rb;
-			rb_intractable.useGravity = false;
-			rb_intractable.linearDamping = 10;
-			rb_intractable.constraints = RigidbodyConstraints.FreezeRotation;
+			// go_interacting.TryGetComponent<Rigidbody>(out Rigidbody rb);
+			// if (rb == null)
+			// {
+			// 	return;
+			// }
+			// rb_intractable = rb;
+			// rb_intractable.useGravity = false;
+			// rb_intractable.linearDamping = 10;
+			// rb_intractable.constraints = RigidbodyConstraints.FreezeRotation;
 
 		}
 
@@ -59,21 +61,17 @@ public class HandleInteraction : MonoBehaviour
 		if (((1 << other.gameObject.layer) & intractableLayer) != 0 && other.CompareTag("FoodItems"))
 		{
 			Debug.Log($"{other.gameObject.name} Exit");
-			if (other.gameObject != go_interacting.gameObject) return;
 			b_isInteracting = false;
-			rb_intractable.useGravity = true;
-			rb_intractable.linearDamping = 1;
-			rb_intractable.constraints = RigidbodyConstraints.None;
-			go_interacting.transform.parent = null;
+			// rb_intractable.useGravity = true;
+			// rb_intractable.linearDamping = 1;
+			// rb_intractable.constraints = RigidbodyConstraints.None;
+			// go_interacting.transform.parent = null;
+			// go_interacting = null;
+			// rb_intractable = null;
 
 
 		}
 	}
 
-	private void DrawGizmo()
-	{
-		Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, interactionRadius);
-
-	}
+	
 }

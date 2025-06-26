@@ -13,8 +13,6 @@ public class HandMovement : MonoBehaviour
     [Header("Input & Raycasting")]
     private Vector3 mouseScreenPosition;
 
-    private bool pickup;
-
     private Ray mouseRay;
     public LayerMask raycastLayerMask;
 
@@ -27,15 +25,6 @@ public class HandMovement : MonoBehaviour
     public float swayXOffset = 2f;
     public float swayYOffset = 2f;
     public float swayZOffset = 2f;
-
-    [Header("Handle PickUp")]
-
-    [SerializeField] private Transform pickUpTransform;
-    [SerializeField] private float pickUpRadius;
-    [SerializeField] private LayerMask pickUpMask;
-
-
-
 
     private void Awake()
     {
@@ -52,10 +41,7 @@ public class HandMovement : MonoBehaviour
 
     void Update()
     {
-        mouseScreenPosition = Input.mousePosition;
-        pickup = Input.GetMouseButton(0);
-
-        
+        mouseScreenPosition = Input.mousePosition;    
     }
 
     void FixedUpdate()
@@ -78,10 +64,5 @@ public class HandMovement : MonoBehaviour
         targetWorldPosition = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
         Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetWorldPosition, handMovementSpeed * Time.fixedDeltaTime);
         rb.MovePosition(smoothedPosition);
-    }
-
-    private void HandPickUp()
-    {
-        // Placeholder for pickup logic
     }
 }

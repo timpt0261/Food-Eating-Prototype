@@ -11,7 +11,7 @@ public class PickUpInteraction : MonoBehaviour
     [SerializeField] private float pickupForce = 150.0f;
 
     [Range(0.01f, 1f)]
-    [SerializeField] private float deltaDistance = 0.1f;
+    [SerializeField] private float range = 0.1f;
 
     public bool IsHoldingObject()
     {
@@ -24,7 +24,7 @@ public class PickUpInteraction : MonoBehaviour
 		if (heldObjectRigidbody == null)
 			return;
 
-		if (Vector3.Distance(heldObject.transform.position, holdArea.position) > deltaDistance)
+		if (Vector3.Distance(heldObject.transform.position, holdArea.position) > range)
         {
             Vector3 moveDirection = holdArea.position - heldObject.transform.position;
             heldObjectRigidbody.AddForce(moveDirection * pickupForce);
