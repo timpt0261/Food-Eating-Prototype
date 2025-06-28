@@ -1,5 +1,5 @@
 using System;
-using Unity.VisualScripting;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -17,39 +17,61 @@ public class HandMovement : MonoBehaviour
     public LayerMask raycastLayerMask;
 
     [Header("Hand Positioning")]
-    private Vector3 targetWorldPosition;
-    public float handMovementSpeed = 5f;
+    [SerializeField] private Vector3 targetWorldPosition;
+    [SerializeField] private float handMovementSpeed = 5f;
 
     [Header("Sway Behavior")]
-    public bool isSwaying = false;
-    public float swayXOffset = 2f;
-    public float swayYOffset = 2f;
-    public float swayZOffset = 2f;
+    private Vector3 lastMousePosition;
 
+    private Vector3 mouseDelta
+    {
+        get { return Input.mousePosition - lastMousePosition; }
+    }
+
+
+    [Range(0f, 1000f)]
+    [SerializeField] public float swayScalar = 10f;
+
+    [SerializeField]
+    private float minRangeOfSway = 0f;
+
+    [SerializeField]
+    private float maxRangeOfSway = 10f;
+
+
+    private Vector3 calculatedSway;
     private void Awake()
     {
         mainCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
         targetWorldPosition = transform.position;
+        lastMousePosition = Input.mousePosition;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
-        isSwaying = false;
     }
 
 
     void Update()
     {
         mouseScreenPosition = Input.mousePosition;
+
+        float sqrMagnitudePosition = lastMousePosition.sqrMagnitude;
+        calculatedSway = mouseDelta;
+
+        Debug.Log($"Last Mouse Velocity : {calculatedSway}");
+        lastMousePosition = Input.mousePosition;
+
     }
 
     void FixedUpdate()
     {
-        UpdateHandPositionWithSway();
+        UpdateHandSway();
+        UpdateHandPosition();
     }
 
-    private void UpdateHandPositionWithSway()
+    private void UpdateHandPosition()
     {
         mouseRay = mainCamera.ScreenPointToRay(mouseScreenPosition);
         float raycastDistance = 100f;
@@ -64,6 +86,17 @@ public class HandMovement : MonoBehaviour
         targetWorldPosition = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
         Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetWorldPosition, handMovementSpeed * Time.fixedDeltaTime);
         rb.MovePosition(smoothedPosition);
+    }
+
+    private void UpdateHandSway()
+    {
+        float swayPitch = Mathf.Clamp(calculatedSway.y, minRangeOfSway, maxRangeOfSway);  // Look up/down → X
+        float swayYaw = Mathf.Clamp(calculatedSway.x, minRangeOfSway, maxRangeOfSway);    // Turn left/right → Y
+        float swayRoll = Mathf.Clamp(calculatedSway.z, minRangeOfSway, maxRangeOfSway);   // Tilt head → Z
+
+        Vector3 rotateTo = new Vector3(swayPitch, swayYaw, swayRoll);
+        rb.MoveRotation(Quaternion.Euler(calculatedSway));
+
     }
 
     private float calculateHandSpeed()
