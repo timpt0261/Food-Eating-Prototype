@@ -114,34 +114,18 @@ public class HandMovement : MonoBehaviour
     private void MoveHandUp()
     {
         if (!IsPickingUp) return;
-
-        pickUpSpeed = baseHandSpeed / 2f;
-        float targetHeight = rb.position.y + 2.5f;
-        float clampedY = Mathf.Clamp(targetHeight, minPickUpHeight, maxPickUpHeight);
-
-        Vector3 targetPosition = new Vector3(rb.position.x, clampedY, rb.position.z);
-        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPosition, Time.fixedDeltaTime * pickUpSpeed);
-        rb.MovePosition(smoothedPosition);
+        UpdateHandHeight(true);
     }
 
 
     private void MoveHandDown()
     {
         if (IsPickingUp) return;
-        dropOffSpeed = 5f;
-
-        float targetHeight = rb.position.y - 2.5f;
-        float clampedY = Mathf.Clamp(targetHeight, minPickUpHeight, maxPickUpHeight);
-        Vector3 targetPostion = new Vector3(rb.position.x, clampedY, rb.position.z);
-        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPostion, Time.fixedDeltaTime * dropOffSpeed);
-        rb.MovePosition(smoothedPosition);
+        UpdateHandHeight(false);
     }
 
     private void UpdateHandHeight(bool direction)
     {
-        if (direction && !IsPickingUp) return;
-        if (!direction && IsPickingUp) return;
-
         float heightStep = 2.5f;
         float speed = direction ? pickUpSpeed : dropOffSpeed;
         float targetHeight = direction ? rb.position.y + heightStep : rb.position.y - heightStep;
