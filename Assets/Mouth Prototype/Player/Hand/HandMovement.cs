@@ -1,28 +1,31 @@
-using System;
-using Unity.Cinemachine;
 using UnityEngine;
+using Unity.Cinemachine;
+using UnityEditor;
+using Unity.Entities.UniversalDelegates;
 
 [RequireComponent(typeof(Rigidbody))]
 public class HandMovement : MonoBehaviour
 {
     [Header("References")]
     private Camera mainCamera;
-    private Rigidbody rb;
-    public Collider planeCollider;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Collider planeCollider;
+
+    [SerializeField] private HandPickUp handPickUp;
+
+    [SerializeField] private PickUpInteraction pickUpInteraction;
 
     [Header("Input & Raycasting")]
     private Vector3 mouseScreenPosition;
-
     private Ray mouseRay;
     public LayerMask raycastLayerMask;
 
     [Header("Hand Positioning")]
     [SerializeField] private Vector3 targetWorldPosition;
-    [SerializeField] private float handMovementSpeed = 5f;
+    [SerializeField] private float baseHandSpeed = 5f;
 
     [Header("Sway Behavior")]
     private Vector3 lastMousePosition;
-
     private Vector3 mouseDelta
     {
         get { return Input.mousePosition - lastMousePosition; }
@@ -39,11 +42,43 @@ public class HandMovement : MonoBehaviour
     private float maxRangeOfSway = 10f;
 
 
+    [Header("Stamina")]
+
+    private bool IsPickingUp = false;
+    private Vector3 initialPosition;
+
+    private float maxPickUpHeight = 10f;
+
+    private float minPickUpHeight;
+
+    [SerializeField] private float pickUpSpeed = 2.5f;
+
+    [SerializeField] private float dropOffSpeed = 5f;
+
+
+
+    private float minHandSpeed = 1f;
+    private float maxHandspeed = 15f;
     private Vector3 calculatedSway;
+
+    bool interactOnFrame = false;
+    float mass;
+    Vector3 direction;
+
+
+
+
+
     private void Awake()
     {
         mainCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        minPickUpHeight = rb.position.y;
+
+        handPickUp = GetComponent<HandPickUp>();
+        pickUpInteraction = GetComponent<PickUpInteraction>();
+
         targetWorldPosition = transform.position;
         lastMousePosition = Input.mousePosition;
 
@@ -57,10 +92,12 @@ public class HandMovement : MonoBehaviour
     {
         mouseScreenPosition = Input.mousePosition;
 
-        float sqrMagnitudePosition = lastMousePosition.sqrMagnitude;
+        interactOnFrame = !handPickUp.Interact;
         calculatedSway = mouseDelta;
 
-        Debug.Log($"Last Mouse Velocity : {calculatedSway}");
+        // Debug.Log($"Last Mouse Velocity : {calculatedSway}");
+
+        IsPickingUp = Input.GetMouseButton(0) && Input.GetMouseButton(1) && pickUpInteraction.HoldingObject;
         lastMousePosition = Input.mousePosition;
 
     }
@@ -68,7 +105,52 @@ public class HandMovement : MonoBehaviour
     void FixedUpdate()
     {
         UpdateHandSway();
+        MoveHandUp();
         UpdateHandPosition();
+        MoveHandDown();
+
+    }
+
+    private void MoveHandUp()
+    {
+        if (!IsPickingUp) return;
+
+        pickUpSpeed = baseHandSpeed / 2f;
+        float targetHeight = rb.position.y + 2.5f;
+        float clampedY = Mathf.Clamp(targetHeight, minPickUpHeight, maxPickUpHeight);
+
+        Vector3 targetPosition = new Vector3(rb.position.x, clampedY, rb.position.z);
+        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPosition, Time.fixedDeltaTime * pickUpSpeed);
+        rb.MovePosition(smoothedPosition);
+    }
+
+
+    private void MoveHandDown()
+    {
+        if (IsPickingUp) return;
+        dropOffSpeed = 5f;
+
+        float targetHeight = rb.position.y - 2.5f;
+        float clampedY = Mathf.Clamp(targetHeight, minPickUpHeight, maxPickUpHeight);
+        Vector3 targetPostion = new Vector3(rb.position.x, clampedY, rb.position.z);
+        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPostion, Time.fixedDeltaTime * dropOffSpeed);
+        rb.MovePosition(smoothedPosition);
+    }
+
+    private void UpdateHandHeight(bool direction)
+    {
+        if (direction && !IsPickingUp) return;
+        if (!direction && IsPickingUp) return;
+
+        float heightStep = 2.5f;
+        float speed = direction ? pickUpSpeed : dropOffSpeed;
+        float targetHeight = direction ? rb.position.y + heightStep : rb.position.y - heightStep;
+        float clampedY = Mathf.Clamp(targetHeight, minPickUpHeight, maxPickUpHeight);
+
+        Vector3 targetPosition = new Vector3(rb.position.x, clampedY, rb.position.z);
+        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPosition, Time.fixedDeltaTime * speed);
+        rb.MovePosition(smoothedPosition);
+
     }
 
     private void UpdateHandPosition()
@@ -84,24 +166,40 @@ public class HandMovement : MonoBehaviour
         // float targetZ = isSwaying ? transform.position.z + swayZOffset : hitInfo.point.z;
 
         targetWorldPosition = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
-        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetWorldPosition, handMovementSpeed * Time.fixedDeltaTime);
+        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetWorldPosition, baseHandSpeed * Time.fixedDeltaTime);
         rb.MovePosition(smoothedPosition);
     }
 
     private void UpdateHandSway()
     {
-        float swayPitch = Mathf.Clamp(calculatedSway.y, minRangeOfSway, maxRangeOfSway);  // Look up/down → X
-        float swayYaw = Mathf.Clamp(calculatedSway.x, minRangeOfSway, maxRangeOfSway);    // Turn left/right → Y
-        float swayRoll = Mathf.Clamp(calculatedSway.z, minRangeOfSway, maxRangeOfSway);   // Tilt head → Z
+        float swayPitch = Mathf.Clamp(calculatedSway.x, minRangeOfSway, maxRangeOfSway); ; // Look up/down → X
+        float swayYaw = Mathf.Clamp(calculatedSway.y, minRangeOfSway, maxRangeOfSway);    // Turn left/right → Y
+        float swayRoll = 0;   // Tilt head → Z
 
         Vector3 rotateTo = new Vector3(swayPitch, swayYaw, swayRoll);
-        rb.MoveRotation(Quaternion.Euler(calculatedSway));
+
+        Quaternion calculatedRotation = Quaternion.Euler(calculatedSway);
+        rb.MoveRotation(calculatedRotation);
 
     }
 
-    private float calculateHandSpeed()
+    private void UpdateForce()
     {
-        // More heavy the object the slower the movement
-        return 0f;
+        if (!interactOnFrame) return;
+
+        Rigidbody pickedObjRB = pickUpInteraction.RB_HeldObject;
+        mass = pickedObjRB.mass;
+        direction = new Vector3(0, -1, 0) * mass;
+        rb.AddForce(direction, ForceMode.Force);
+        // rb.linearVelocity *= handMovementSpeed / mass;
+
+    }
+
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, direction);
     }
 }

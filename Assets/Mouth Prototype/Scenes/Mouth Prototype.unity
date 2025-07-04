@@ -1203,7 +1203,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296564314}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2244,7 +2244,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1430100108035534306, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622756206606864979, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262198465246691369, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.72
       objectReference: {fileID: 0}
     - target: {fileID: 3458702375037450720, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: range
@@ -2252,7 +2260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3458702375037450720, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: pickupForce
-      value: 20
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3458702375037450720, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: holdAreaRadius

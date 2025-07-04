@@ -2,81 +2,91 @@ using UnityEngine;
 public class PickUpInteraction : MonoBehaviour
 {
 
-    [SerializeField]
-    private HandMovement handMovement;
+	[SerializeField]
+	private HandMovement handMovement;
 
-    [Header("Hold Object")]
-    [SerializeField] Transform holdArea = null;
-    [SerializeField] float holdAreaRadius = 5.0f;
-    [SerializeField] private GameObject heldObject = null;
-    private Rigidbody heldObjectRigidbody = null;
+	[Header("Hold Object")]
+	[SerializeField] Transform holdArea = null;
+	[SerializeField] float holdAreaRadius = 5.0f;
+	[SerializeField] private GameObject go_heldObject = null;
+	private Rigidbody rb_heldObject = null;
 
-    [Range(0.01f, 1f)]
-    [SerializeField] private float range = 0.1f;
+	public Rigidbody RB_HeldObject => rb_heldObject;
 
-
-    [Range(0, 1000)]
-    [SerializeField] private int pickupForce = 150;
-
-    void Awake()
-    {
-        handMovement = GetComponent<HandMovement>();
-    }
-
-    public bool IsHoldingObject()
-    {
-        return heldObject != null;
-    }
-
-    public void MoveObject()
-    {
-        // Debug.Log("Moving object");
-        if (heldObjectRigidbody == null)
-            return;
-
-        if (Vector3.Distance(heldObject.transform.position, holdArea.position) > range)
-        {
-            Vector3 moveDirection = holdArea.position - heldObject.transform.position;
-            heldObjectRigidbody.AddForce(moveDirection * pickupForce);
-            // Vector3 targetPostion = Vector3.Lerp(holdArea.position, heldObject.transform.position, Time.deltaTime * pickupForce);
-            // heldObjectRigidbody.MovePosition(targetPostion);
-        }
-
-    }
+	[Range(0.01f, 1f)]
+	[SerializeField] private float range = 0.1f;
 
 
-    public void PickUpObject(GameObject pickObj)
-    {
-        Debug.Log("Picking Up object");
-        pickObj.TryGetComponent<Rigidbody>(out Rigidbody pickObjRB);
+	[Range(0, 1000)]
+	[SerializeField] private int pickupForce = 150;
 
-        if (!pickObjRB) return;
-        heldObjectRigidbody = pickObjRB;
-        updateHeldObjectRigidBody(pickObj, true);
+	public bool HoldingObject
+	{
+		get
+		{
+			return go_heldObject != null;
+		}
+	}
 
-    }
+	void Awake()
+	{
+		handMovement = GetComponent<HandMovement>();
+	}
 
-    public void DropObject()
-    {
-        Debug.Log("Droping Object");
-        if (heldObjectRigidbody == null) return;
-        updateHeldObjectRigidBody(null, false);
-    }
+	public bool IsHoldingObject()
+	{
+		return go_heldObject != null;
+	}
 
-    private void updateHeldObjectRigidBody(GameObject pickObj, bool handle)
-    {
+	public void MoveObject()
+	{
+		// Debug.Log("Moving object");
+		if (rb_heldObject == null)
+			return;
 
-        heldObjectRigidbody.useGravity = !handle;
-        heldObjectRigidbody.linearDamping = handle ? 10 : 1;
-        heldObjectRigidbody.constraints = handle ? RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.None;
-        heldObjectRigidbody.transform.parent = handle ? holdArea : null;
-        heldObject = handle ? pickObj : null;
+		if (Vector3.Distance(go_heldObject.transform.position, holdArea.position) > range)
+		{
+			Vector3 moveDirection = holdArea.position - go_heldObject.transform.position;
+			rb_heldObject.AddForce(moveDirection * pickupForce);
+			// Vector3 targetPostion = Vector3.Lerp(holdArea.position, heldObject.transform.position, Time.deltaTime * pickupForce);
+			// heldObjectRigidbody.MovePosition(targetPostion);
+		}
 
-    }
+	}
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(holdArea.position, holdAreaRadius);
-    }
+
+	public void PickUpObject(GameObject pickObj)
+	{
+		// Debug.Log("Picking Up object");
+		pickObj.TryGetComponent<Rigidbody>(out Rigidbody pickObjRB);
+
+		if (!pickObjRB) return;
+		rb_heldObject = pickObjRB;
+		updateHeldObjectRigidBody(pickObj, true);
+
+	}
+
+	public void DropObject()
+	{
+		// Debug.Log("Droping Object");
+		if (rb_heldObject == null) return;
+		updateHeldObjectRigidBody(null, false);
+	}
+
+	private void updateHeldObjectRigidBody(GameObject pickObj, bool handle)
+	{
+
+		rb_heldObject.useGravity = !handle;
+		rb_heldObject.linearDamping = handle ? 10 : 1;
+		rb_heldObject.constraints = handle ? RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.None;
+		rb_heldObject.transform.parent = handle ? holdArea : null;
+		go_heldObject = handle ? pickObj : null;
+
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.blue;
+		Gizmos.DrawWireSphere(holdArea.position, holdAreaRadius);
+	}
 }
