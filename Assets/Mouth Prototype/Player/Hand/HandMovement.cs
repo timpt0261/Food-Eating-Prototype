@@ -2,6 +2,9 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEditor;
 using Unity.Entities.UniversalDelegates;
+using UnityEngine.UI;
+using UnityEngine.InputSystem.Interactions;
+using Unity.Entities;
 
 [RequireComponent(typeof(Rigidbody))]
 public class HandMovement : MonoBehaviour
@@ -43,6 +46,12 @@ public class HandMovement : MonoBehaviour
 
 
     [Header("Stamina")]
+
+    [SerializeField] private float stamina = 1.0f;
+
+    [SerializeField] private float strength = 1f;
+
+    [SerializeField] private Slider slider;
 
     private bool IsPickingUp = false;
     private Vector3 initialPosition;
@@ -97,7 +106,11 @@ public class HandMovement : MonoBehaviour
 
         // Debug.Log($"Last Mouse Velocity : {calculatedSway}");
 
+
         IsPickingUp = Input.GetMouseButton(0) && Input.GetMouseButton(1) && pickUpInteraction.HoldingObject;
+
+
+        UpdateStamina();
         lastMousePosition = Input.mousePosition;
 
     }
@@ -108,7 +121,6 @@ public class HandMovement : MonoBehaviour
         MoveHandUp();
         UpdateHandPosition();
         MoveHandDown();
-
     }
 
     private void MoveHandUp()
@@ -135,6 +147,7 @@ public class HandMovement : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPosition, Time.fixedDeltaTime * speed);
         rb.MovePosition(smoothedPosition);
 
+
     }
 
     private void UpdateHandPosition()
@@ -145,12 +158,9 @@ public class HandMovement : MonoBehaviour
         if (!Physics.Raycast(mouseRay, out RaycastHit hitInfo, raycastDistance, raycastLayerMask)) return;
         if (hitInfo.collider != planeCollider) return;
 
-        // float targetX = isSwaying ? transform.position.x + swayXOffset : hitInfo.point.x;
-        // float targetY = isSwaying ? Mathf.Lerp(transform.localPosition.y, hitInfo.point.z + swayYOffset, Time.fixedDeltaTime * 2.4f) : transform.position.y;
-        // float targetZ = isSwaying ? transform.position.z + swayZOffset : hitInfo.point.z;
-
+        float speed = CalculateSpeed();
         targetWorldPosition = new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
-        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetWorldPosition, baseHandSpeed * Time.fixedDeltaTime);
+        Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetWorldPosition, speed * Time.fixedDeltaTime);
         rb.MovePosition(smoothedPosition);
     }
 
@@ -167,18 +177,42 @@ public class HandMovement : MonoBehaviour
 
     }
 
-    private void UpdateForce()
+    private float CalculateSpeed()
     {
-        if (!interactOnFrame) return;
+        Rigidbody holdingObj_RB = pickUpInteraction.RB_HeldObject;
+        if (holdingObj_RB == null) { return baseHandSpeed; }
 
-        Rigidbody pickedObjRB = pickUpInteraction.RB_HeldObject;
-        mass = pickedObjRB.mass;
-        direction = new Vector3(0, -1, 0) * mass;
-        rb.AddForce(direction, ForceMode.Force);
-        // rb.linearVelocity *= handMovementSpeed / mass;
+        int roundToDecimal = 3;
+        int offset = 1;
+        float speed = baseHandSpeed * stamina;
+        float roundedSpeed = Mathf.Round(speed * Mathf.Pow(10, roundToDecimal) / Mathf.Pow(10, roundToDecimal));
+        float weightOfObject = holdingObj_RB.mass / strength;
 
+        Debug.Log($" Rounded Speed: {roundedSpeed}");
+        Debug.Log($" Weight of Object: {weightOfObject}");
+
+        Debug.Log($"Speed : {roundedSpeed / weightOfObject}");
+        return roundedSpeed / weightOfObject;
     }
 
+    private void UpdateStamina()
+    {
+
+        float rate = .1f;
+        if (IsPickingUp)
+        {
+            float mass = pickUpInteraction.RB_HeldObject.mass;
+            stamina -= mass * rate * Time.deltaTime;
+
+        }
+        else
+        {
+            stamina += rate * Time.deltaTime;
+        }
+
+        slider.value = stamina;
+
+    }
 
 
     private void OnDrawGizmosSelected()

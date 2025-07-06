@@ -48,8 +48,8 @@ public class PickUpInteraction : MonoBehaviour
 		{
 			Vector3 moveDirection = holdArea.position - go_heldObject.transform.position;
 			rb_heldObject.AddForce(moveDirection * pickupForce);
-			// Vector3 targetPostion = Vector3.Lerp(holdArea.position, heldObject.transform.position, Time.deltaTime * pickupForce);
-			// heldObjectRigidbody.MovePosition(targetPostion);
+			// Vector3 targetPostion = Vector3.Lerp(holdArea.position, go_heldObject.transform.position, Time.deltaTime * 10f);
+			// rb_heldObject.MovePosition(targetPostion);
 		}
 
 	}
@@ -63,6 +63,8 @@ public class PickUpInteraction : MonoBehaviour
 		if (!pickObjRB) return;
 		rb_heldObject = pickObjRB;
 		updateHeldObjectRigidBody(pickObj, true);
+
+
 
 	}
 
