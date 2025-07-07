@@ -73,6 +73,7 @@ public class PickUpInteraction : MonoBehaviour
 		// Debug.Log("Droping Object");
 		if (rb_heldObject == null) return;
 		updateHeldObjectRigidBody(null, false);
+		
 	}
 
 	private void updateHeldObjectRigidBody(GameObject pickObj, bool handle)

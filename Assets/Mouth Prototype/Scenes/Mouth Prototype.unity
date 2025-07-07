@@ -772,7 +772,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -2.5000076, y: 0}
+  m_AnchoredPosition: {x: -2.4999924, y: 0}
   m_SizeDelta: {x: -5.0000014, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &392183791
@@ -1335,6 +1335,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4660872619443282301, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
   m_PrefabInstance: {fileID: 5356638471283137033}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &989042001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4546760304632542339, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+  m_PrefabInstance: {fileID: 5356638471283137033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1038873440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1427,7 +1432,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.21469305, g: 0.8584906, b: 0, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1446,7 +1451,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 0
-  m_TargetGraphic: {fileID: 123893652}
+  m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1167111766}
   m_HandleRect: {fileID: 123893651}
   m_Direction: 0
@@ -1456,7 +1461,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 989042001}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1108131559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,6 +2986,10 @@ PrefabInstance:
       value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3458702375037450720, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: handMovement
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3458702375037450720, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: holdAreaRadius
       value: 0.71
       objectReference: {fileID: 0}
@@ -3025,6 +3046,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1090230806}
     - target: {fileID: 8564786229102036755, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: handPickUp
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564786229102036755, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: sliderFill
+      value: 
+      objectReference: {fileID: 1167111767}
+    - target: {fileID: 8564786229102036755, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: planeCollider
       value: 
       objectReference: {fileID: 4436498466916989495}
@@ -3035,6 +3064,14 @@ PrefabInstance:
     - target: {fileID: 8564786229102036755, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: minRangeOfSway
       value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564786229102036755, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: pickUpInteraction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158464379159094921, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: _handMovement
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9158464379159094921, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: _interactionPointSize.x
@@ -3047,6 +3084,10 @@ PrefabInstance:
     - target: {fileID: 9158464379159094921, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
       propertyPath: _interactionPointSize.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158464379159094921, guid: 1ac0ee80ed91086468908981d92f1a00, type: 3}
+      propertyPath: _playerPickUpInteraction
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

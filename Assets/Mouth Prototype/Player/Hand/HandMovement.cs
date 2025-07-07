@@ -49,6 +49,8 @@ public class HandMovement : MonoBehaviour
 
     [SerializeField] private float stamina = 1.0f;
 
+    public float Stamina => stamina;
+
     [SerializeField] private float strength = 1f;
 
     [SerializeField] private Slider slider;
@@ -56,13 +58,15 @@ public class HandMovement : MonoBehaviour
     private bool IsPickingUp = false;
     private Vector3 initialPosition;
 
-    private float maxPickUpHeight = 10f;
+    [SerializeField] private float maxPickUpHeight = 8f;
 
-    private float minPickUpHeight;
+    [SerializeField] private float minPickUpHeight;
 
     [SerializeField] private float pickUpSpeed = 2.5f;
 
     [SerializeField] private float dropOffSpeed = 5f;
+
+    [SerializeField] private Image sliderFill;
 
 
 
@@ -103,20 +107,14 @@ public class HandMovement : MonoBehaviour
 
         interactOnFrame = !handPickUp.Interact;
         calculatedSway = mouseDelta;
-
-        // Debug.Log($"Last Mouse Velocity : {calculatedSway}");
-
-
         IsPickingUp = Input.GetMouseButton(0) && Input.GetMouseButton(1) && pickUpInteraction.HoldingObject;
-
-
-        UpdateStamina();
         lastMousePosition = Input.mousePosition;
 
     }
 
     void FixedUpdate()
     {
+        UpdateStamina();
         UpdateHandSway();
         MoveHandUp();
         UpdateHandPosition();
@@ -171,8 +169,9 @@ public class HandMovement : MonoBehaviour
         float swayRoll = 0;   // Tilt head → Z
 
         Vector3 rotateTo = new Vector3(swayPitch, swayYaw, swayRoll);
-
         Quaternion calculatedRotation = Quaternion.Euler(calculatedSway);
+
+        // Quaternion calculatedRotation = Quaternion.Euler(calculatedSway);
         rb.MoveRotation(calculatedRotation);
 
     }
@@ -185,13 +184,13 @@ public class HandMovement : MonoBehaviour
         int roundToDecimal = 3;
         int offset = 1;
         float speed = baseHandSpeed * stamina;
-        float roundedSpeed = Mathf.Round(speed * Mathf.Pow(10, roundToDecimal) / Mathf.Pow(10, roundToDecimal));
+        float roundedSpeed = round(speed, roundToDecimal);
         float weightOfObject = holdingObj_RB.mass / strength;
 
-        Debug.Log($" Rounded Speed: {roundedSpeed}");
-        Debug.Log($" Weight of Object: {weightOfObject}");
+        // Debug.Log($" Rounded Speed: {roundedSpeed}");
+        // Debug.Log($" Weight of Object: {weightOfObject}");
 
-        Debug.Log($"Speed : {roundedSpeed / weightOfObject}");
+        // Debug.Log($"Speed : {roundedSpeed / weightOfObject}");
         return roundedSpeed / weightOfObject;
     }
 
@@ -199,19 +198,39 @@ public class HandMovement : MonoBehaviour
     {
 
         float rate = .1f;
+        float change = 0;
         if (IsPickingUp)
         {
             float mass = pickUpInteraction.RB_HeldObject.mass;
-            stamina -= mass * rate * Time.deltaTime;
+            change = mass * rate * Time.fixedDeltaTime;
+            stamina -= change;
 
         }
         else
         {
-            stamina += rate * Time.deltaTime;
+            // change = rate * Time.deltaTime;
+            // stamina += change;
+
+            stamina = Mathf.Lerp(stamina, stamina + rate, Time.fixedDeltaTime);
         }
 
+        stamina = Mathf.Clamp01(stamina);
+        // sliderChangeColor();
         slider.value = stamina;
 
+
+    }
+
+    public void sliderChangeColor()
+    {
+        Color newColor = sliderFill.color;
+        newColor.a = Mathf.Clamp01(slider.value);
+        sliderFill.color = newColor;
+    }
+
+    private float round(float a, int b)
+    {
+        return Mathf.Round(a * Mathf.Pow(10, b) / Mathf.Pow(10, b));
     }
 
 
