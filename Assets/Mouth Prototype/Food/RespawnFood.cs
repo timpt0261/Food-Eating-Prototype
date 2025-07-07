@@ -10,6 +10,7 @@ public class RespawnFood : MonoBehaviour
 	{
 		if (other.CompareTag("FoodItems"))
 		{
+			Debug.Log($"Eating : {other.gameObject.name}");
 			other.gameObject.transform.position = respawnTransform.position;
 		}
 	}
