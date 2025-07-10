@@ -46,13 +46,7 @@ public class HeadMovment : MonoBehaviour
 
 	private void HeadSway()
 	{
-
-		// if (input == Vector3.zero) return;
 		var next_pos = transform.position + input.normalized * speed * Time.fixedDeltaTime;
-		Debug.Log($"{next_pos}");
 		rb.MovePosition(next_pos);
-
-
-
 	}
 }

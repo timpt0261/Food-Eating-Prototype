@@ -1,10 +1,5 @@
 using UnityEngine;
-using Unity.Cinemachine;
-using UnityEditor;
-using Unity.Entities.UniversalDelegates;
 using UnityEngine.UI;
-using UnityEngine.InputSystem.Interactions;
-using Unity.Entities;
 
 [RequireComponent(typeof(Rigidbody))]
 public class HandMovement : MonoBehaviour
@@ -164,11 +159,6 @@ public class HandMovement : MonoBehaviour
 
     private void UpdateHandSway()
     {
-        float swayPitch = Mathf.Clamp(calculatedSway.x, minRangeOfSway, maxRangeOfSway); ; // Look up/down → X
-        float swayYaw = Mathf.Clamp(calculatedSway.y, minRangeOfSway, maxRangeOfSway);    // Turn left/right → Y
-        float swayRoll = 0;   // Tilt head → Z
-
-        Vector3 rotateTo = new Vector3(swayPitch, swayYaw, swayRoll);
         Quaternion calculatedRotation = Quaternion.Euler(calculatedSway);
 
         // Quaternion calculatedRotation = Quaternion.Euler(calculatedSway);

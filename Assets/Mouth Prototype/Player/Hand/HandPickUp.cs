@@ -50,21 +50,18 @@ public class HandPickUp : MonoBehaviour
 	{
 		if (_numfound == 0 && !canPlayerHoldObject)
 		{
-			Debug.Log("Clear");
 			ClearInteract();
 			return;
 		}
 
 		if (_interactable == null && !canPlayerHoldObject)
 		{
-			Debug.Log("Set");
 			SetInteractable(_colliders[0]);
 			return;
 		}
 
 		if (_interactable != null)
 		{
-			Debug.Log("Handle");
 			HandleInteractable(canPlayerHoldObject);
 			return;
 		}

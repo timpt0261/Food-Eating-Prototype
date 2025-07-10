@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RespawnFood : MonoBehaviour
 {
@@ -6,13 +8,29 @@ public class RespawnFood : MonoBehaviour
 
 	public LayerMask intractableLayerMask;
 
+	public UnityEvent onEating;
+
+	public AudioSource eatingSFX;
+
+
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("FoodItems"))
 		{
-			Debug.Log($"Eating : {other.gameObject.name}");
-			other.gameObject.transform.position = respawnTransform.position;
+			onEating?.Invoke();
 		}
 	}
+
+	public void OnEating()
+	{
+		// is mouth open
+		
+		
+	}
+
+
+
+
 
 }
