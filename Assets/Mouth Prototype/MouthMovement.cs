@@ -6,44 +6,36 @@ using UnityEngine.InputSystem.LowLevel;
 public class MouthMovement : MonoBehaviour
 {
     // --------------------
-    // Input Settings
+    // Inspector Fields
     // --------------------
+
+    [Header("Input Settings")]
     [SerializeField] private KeyCode key = KeyCode.Q;
 
-    // --------------------
-    // Rigidbody References
-    // --------------------
+    [Header("Rigidbody References")]
     [SerializeField] private Rigidbody rb_roof;
     [SerializeField] private Rigidbody rb_jaw;
 
-    // --------------------
-    // Jaw Rotation Limits
-    // --------------------
+    [Header("Jaw Rotation Limits")]
     [SerializeField] private float minPitch = 0f;
     [SerializeField] private float maxPitch = 30f;
 
-    // --------------------
-    // Jaw State Machine
-    // --------------------
-    private enum MouthState { Idle, Opening, Closing }
-    private MouthState mouthState = MouthState.Idle;
-
-    // --------------------
-    // Movement Speeds
-    // --------------------
+    [Header("Movement Speeds")]
     [SerializeField] private float openingSpeed = 20f;
     [SerializeField] private float closingSpeed = 20f;
 
-    // --------------------
-    // Interpolation Rates
-    // --------------------
+    [Header("Interpolation Rates")]
     [SerializeField] private float openRate = 1f;
     [SerializeField] private float closeRate = 3f;
 
     // --------------------
-    // Internal State
+    // Internal State (Hidden)
     // --------------------
+    private enum MouthState { Idle, Opening, Closing }
+    private MouthState mouthState = MouthState.Idle;
     private float currentPitch = 0f;
+
+    private bool isOpeningMouth;
 
 
     void Awake()
@@ -57,40 +49,23 @@ public class MouthMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(key) && mouthState == MouthState.Idle)
-        {
-            mouthState = MouthState.Opening;
-        }
-
-
+        isOpeningMouth = Input.GetKeyDown(key);
     }
 
     void FixedUpdate()
     {
 
-        switch (mouthState)
-        {
+        float targetPitch = isOpeningMouth ? currentPitch + openRate : currentPitch - closeRate;
+        float speed = isOpeningMouth ? openingSpeed : closingSpeed;
+        currentPitch = Mathf.Lerp(
+                currentPitch,
+                targetPitch,
+                speed * Time.deltaTime
+            );
 
-            case MouthState.Opening:
-                currentPitch = Mathf.MoveTowards(
-                    currentPitch,
-                    maxPitch,
-                    openingSpeed * Time.fixedDeltaTime
-                );
-                if (Mathf.Approximately(currentPitch, maxPitch))
-                    mouthState = MouthState.Closing;
-                break;
+        currentPitch = Mathf.Clamp(currentPitch, minPitch, maxPitch);
 
-            case MouthState.Closing:
-                currentPitch = Mathf.MoveTowards(
-                    currentPitch,
-                    minPitch,
-                    closingSpeed * Time.fixedDeltaTime
-                );
-                if (Mathf.Approximately(currentPitch, 0f))
-                    mouthState = MouthState.Idle;
-                break;
-        }
+        Debug.Log($"{currentPitch}");
 
         Quaternion roofRot = Quaternion.Euler(-currentPitch, 0, 0);
         Quaternion jawRot = Quaternion.Euler(currentPitch, 0, 0);
