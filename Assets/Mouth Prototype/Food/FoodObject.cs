@@ -4,7 +4,7 @@ using System.Collections;
 using Unity.VisualScripting;
 
 [RequireComponent(typeof(Rigidbody))]
-public class FoodObject : MonoBehaviour, IInteractable, IEdible
+public class FoodObject : MonoBehaviour
 {
 	private HandPickUp interactor;
 	private Rigidbody rb;
@@ -14,6 +14,17 @@ public class FoodObject : MonoBehaviour, IInteractable, IEdible
 	[SerializeField]
 	private AudioSource eatSFX = null;
 
+	// Stats
+
+	// Mesh
+
+	// SFX
+
+	// Effects when PickedUp
+
+	// Effects when Eating
+
+	// Reference to breakable mesh
 
 	void Awake()
 	{
@@ -25,18 +36,4 @@ public class FoodObject : MonoBehaviour, IInteractable, IEdible
 		this.interactor = interactor;
 	}
 
-
-
-
-	public void Eaten()
-	{
-		StartCoroutine(HandleEating());
-	}
-
-	IEnumerator HandleEating()
-	{
-		eatSFX.Play();
-		yield return new WaitForSeconds(1);
-		Destroy(this);
-	}
 }
