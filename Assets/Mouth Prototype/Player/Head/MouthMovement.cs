@@ -31,10 +31,10 @@ public class MouthMovement : MonoBehaviour
     // --------------------
     // Internal State (Hidden)
     // --------------------
-    private enum MouthState { Idle, Opening, Closing }
-    private MouthState mouthState = MouthState.Idle;
+
     private float currentPitch = 0f;
 
+    public float CurrentPitch => currentPitch;
     private bool isOpeningMouth;
 
 
