@@ -1,8 +1,4 @@
 using UnityEngine;
-using System.Threading.Tasks;
-using System.Collections;
-using Unity.VisualScripting;
-
 [RequireComponent(typeof(Rigidbody))]
 public class FoodObject : MonoBehaviour
 {
@@ -11,8 +7,7 @@ public class FoodObject : MonoBehaviour
 
 	public Rigidbody Rb => rb;
 
-	[SerializeField]
-	private AudioSource eatSFX = null;
+	public GameObject fracturedRef;
 
 	// Stats
 

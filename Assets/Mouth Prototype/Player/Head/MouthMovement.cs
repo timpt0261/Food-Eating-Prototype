@@ -1,7 +1,5 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UIElements.Experimental;
 
 public class MouthMovement : MonoBehaviour
 {
@@ -37,11 +35,20 @@ public class MouthMovement : MonoBehaviour
     public float CurrentPitch => currentPitch;
     private bool isOpeningMouth;
 
+    public bool isNotEating;
+
+    private enum EatingState { IDLE, OPENING, CHEWING, SWALLOWING }
+
+    [SerializeField] private EatingState eatingState = EatingState.IDLE;
+
+
 
     void Awake()
     {
-        rb_roof.MoveRotation(Quaternion.identity);
-        rb_jaw.MoveRotation(Quaternion.identity);
+        // rb_roof.MoveRotation(Quaternion.identity);
+        // rb_jaw.MoveRotation(Quaternion.identity);
+        isNotEating = false;
+        eatingState = EatingState.IDLE;
     }
 
 
@@ -54,7 +61,22 @@ public class MouthMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        switch (eatingState)
+        {
+            case EatingState.OPENING:
+                OpenMouth();
+                break;
+            case EatingState.CHEWING:
+                break;
+            case EatingState.SWALLOWING:
+                break;
+        }
 
+
+    }
+
+    private void OpenMouth()
+    {
         float targetPitch = isOpeningMouth ? currentPitch + openRate : currentPitch - closeRate;
         float speed = isOpeningMouth ? openingSpeed : closingSpeed;
         currentPitch = Mathf.Lerp(
@@ -72,9 +94,13 @@ public class MouthMovement : MonoBehaviour
 
         rb_roof.MoveRotation(roofRot);
         rb_jaw.MoveRotation(jawRot);
-
     }
 
+    private void ChewingMouth()
+    { 
+        
+    }
+    
 
 
 
