@@ -48,7 +48,7 @@ public class MouthMovement : MonoBehaviour
         // rb_roof.MoveRotation(Quaternion.identity);
         // rb_jaw.MoveRotation(Quaternion.identity);
         isNotEating = false;
-        eatingState = EatingState.IDLE;
+        // eatingState = EatingState.IDLE;
     }
 
 
@@ -61,16 +61,18 @@ public class MouthMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        switch (eatingState)
-        {
-            case EatingState.OPENING:
-                OpenMouth();
-                break;
-            case EatingState.CHEWING:
-                break;
-            case EatingState.SWALLOWING:
-                break;
-        }
+
+        OpenMouth();
+        // switch (eatingState)
+        // {
+        //     case EatingState.OPENING:
+
+        //         break;
+        //     case EatingState.CHEWING:
+        //         break;
+        //     case EatingState.SWALLOWING:
+        //         break;
+        // }
 
 
     }
@@ -97,10 +99,10 @@ public class MouthMovement : MonoBehaviour
     }
 
     private void ChewingMouth()
-    { 
-        
+    {
+
     }
-    
+
 
 
 

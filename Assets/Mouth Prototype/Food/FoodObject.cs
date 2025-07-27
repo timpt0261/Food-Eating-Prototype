@@ -7,7 +7,6 @@ public class FoodObject : MonoBehaviour
 
 	public Rigidbody Rb => rb;
 
-	public GameObject fracturedRef;
 
 	// Stats
 

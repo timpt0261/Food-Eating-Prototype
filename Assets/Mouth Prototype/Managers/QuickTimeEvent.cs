@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 public class QuickTimeEvent : MonoBehaviour
 {
@@ -8,8 +9,12 @@ public class QuickTimeEvent : MonoBehaviour
     [SerializeField] private Slider qte_slider;
     [SerializeField] private float speed = 1f;
 
+    [SerializeField] private TextMeshProUGUI score_TMP;
+    [SerializeField] int score;
+
     [SerializeField] private KeyCode key = KeyCode.E;
     [SerializeField] private bool pressedOnFrame;
+
 
     private bool isActive = false;
 
@@ -70,5 +75,11 @@ public class QuickTimeEvent : MonoBehaviour
         return inclusive
             ? value >= min && value <= max   // [min, max]
             : value > min && value < max;  // (min, max)
+    }
+
+    public void UpdateScore()
+    {
+        score++;
+        score_TMP.text = $"{score:D8}";
     }
 }
