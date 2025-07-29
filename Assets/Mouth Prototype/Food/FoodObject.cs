@@ -23,6 +23,7 @@ public class FoodObject : MonoBehaviour
 	void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
+		rb.mass = Random.Range(1.0f, 4.0f);
 	}
 
 	public void Interact(HandPickUp interactor)

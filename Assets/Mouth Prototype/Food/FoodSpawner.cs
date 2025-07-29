@@ -1,10 +1,16 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class FoodSpawner : MonoBehaviour
 {
-	public float spawnInterval = 5f;
-	public int maxSpawnedItems = 10;
-	public GameObject[] foodPrefabs;
+
+	[SerializeField] private Transform spawnPoint;
+
+	[SerializeField] private Vector3 desiredScale;
+	[SerializeField] private float spawnInterval = 5f;
+	[SerializeField] private int maxSpawnedItems = 10;
+	[SerializeField] private GameObject[] foodPrefabs;
 
 	private float lastSpawnTime = 0f;
 	private int currentSpawnCount = 0;
@@ -34,7 +40,16 @@ public class FoodSpawner : MonoBehaviour
 
 		int randomIndex = Random.Range(0, foodPrefabs.Length);
 		Vector3 spawnPosition = transform.position + transform.up;
-		Instantiate(foodPrefabs[randomIndex], spawnPosition, Quaternion.identity, transform);
+		GameObject spawned = Instantiate(foodPrefabs[randomIndex], spawnPosition, Quaternion.identity, transform);
+		spawned.transform.localScale = desiredScale;
 		currentSpawnCount++;
+	}
+
+
+	void OnDrawGizmos()
+	{
+		float radius = .5f;
+		Gizmos.color = Color.blue;
+		Gizmos.DrawWireSphere(spawnPoint.position, radius);
 	}
 }

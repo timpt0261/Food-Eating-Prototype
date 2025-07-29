@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CountDownTimer : MonoBehaviour
 {
@@ -10,10 +11,13 @@ public class CountDownTimer : MonoBehaviour
     private float timeRemaining;
     private bool isCountingDown;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private UnityEvent OnCountDownStart;
+    [SerializeField] private UnityEvent OnStopCountDown;
 
     public void Awake()
     {
-        StartCountDown();
+        // StartCountDown();
+        Time.timeScale = 0f;
     }
 
     public void Update()
@@ -23,15 +27,19 @@ public class CountDownTimer : MonoBehaviour
 
     public void StartCountDown()
     {
+        Time.timeScale = 1;
         isCountingDown = true;
         timeRemaining = duration * milliseconds;
+        OnCountDownStart?.Invoke();
     }
 
     public void StopCountDown()
     {
+        Time.timeScale = 0;
         isCountingDown = false;
         timeRemaining = 0;
         DisplayTime(timeRemaining);
+        OnStopCountDown?.Invoke();
 
     }
 

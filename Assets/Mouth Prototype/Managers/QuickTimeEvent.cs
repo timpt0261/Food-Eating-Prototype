@@ -10,6 +10,8 @@ public class QuickTimeEvent : MonoBehaviour
     [SerializeField] private float speed = 1f;
 
     [SerializeField] private TextMeshProUGUI score_TMP;
+
+    [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] int score;
 
     [SerializeField] private KeyCode key = KeyCode.E;
@@ -81,5 +83,6 @@ public class QuickTimeEvent : MonoBehaviour
     {
         score++;
         score_TMP.text = $"{score:D8}";
+        finalScoreText.text = $"Score : {score}";
     }
 }

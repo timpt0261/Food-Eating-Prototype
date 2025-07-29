@@ -90,8 +90,8 @@ public class HandMovement : MonoBehaviour
         targetWorldPosition = transform.position;
         lastMousePosition = Input.mousePosition;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Confined;
 
     }
 
