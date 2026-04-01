@@ -30,7 +30,7 @@ public class FoodSpawner : MonoBehaviour
 		}
 	}
 
-	void SpawnFood()
+	public void SpawnFood()
 	{
 		if (foodPrefabs == null || foodPrefabs.Length == 0)
 		{

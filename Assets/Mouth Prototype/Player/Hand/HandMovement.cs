@@ -10,7 +10,6 @@ public class HandMovement : MonoBehaviour
     [SerializeField] private Collider planeCollider;
 
     [SerializeField] private HandPickUp handPickUp;
-
     [SerializeField] private PickUpInteraction pickUpInteraction;
 
     [Header("Input & Raycasting")]
@@ -52,6 +51,8 @@ public class HandMovement : MonoBehaviour
 
     private bool IsPickingUp = false;
     private Vector3 initialPosition;
+    
+    [SerializeField] private AnimationCurve pickUpCurve;
 
     [SerializeField] private float maxPickUpHeight = 8f;
 
@@ -61,7 +62,10 @@ public class HandMovement : MonoBehaviour
 
     [SerializeField] private float dropOffSpeed = 5f;
 
-    [SerializeField] private Image sliderFill;
+    
+    [Header("UI")]
+    [SerializeField] private Image _staminaBar;
+    
 
 
 
@@ -90,8 +94,8 @@ public class HandMovement : MonoBehaviour
         targetWorldPosition = transform.position;
         lastMousePosition = Input.mousePosition;
 
-        // Cursor.visible = false;
-        // Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
 
     }
 
@@ -134,6 +138,7 @@ public class HandMovement : MonoBehaviour
         float heightStep = 2.5f;
         float speed = direction ? pickUpSpeed : dropOffSpeed;
         float targetHeight = direction ? rb.position.y + heightStep : rb.position.y - heightStep;
+        float evY = pickUpCurve.Evaluate(targetHeight);
         float clampedY = Mathf.Clamp(targetHeight, minPickUpHeight, maxPickUpHeight);
 
         Vector3 targetPosition = new Vector3(rb.position.x, clampedY, rb.position.z);
@@ -213,9 +218,9 @@ public class HandMovement : MonoBehaviour
 
     public void sliderChangeColor()
     {
-        Color newColor = sliderFill.color;
+        Color newColor = _staminaBar.color;
         newColor.a = Mathf.Clamp01(slider.value);
-        sliderFill.color = newColor;
+        _staminaBar.color = newColor;
     }
 
     private float round(float a, int b)
