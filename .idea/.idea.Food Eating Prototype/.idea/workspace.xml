@@ -5,28 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15eceb0a-c0b3-4463-ac55-8b63d9bb1f3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Food.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedCube.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedCube.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedCube.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedCube.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedCylinder.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedCylinder.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedCylinder.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedCylinder.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedSphere.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedSphere.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedSphere.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Food/fracturedSphere.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FracturedEdbleObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FracturedEdbleObject.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/FoodObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/FoodObject.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/FoodSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/FoodSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Player/Hand/HandMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Player/Hand/HandMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Mouth Prototype.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Mouth Prototype.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Grow.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Grow.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Shrink.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Shrink.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1775078008792</updated>
       <workItem from="1775078011533" duration="5533000" />
+      <workItem from="1775169447155" duration="2037000" />
     </task>
     <servers />
   </component>
