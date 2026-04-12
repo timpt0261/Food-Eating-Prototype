@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Install Doygen & Dependencies
