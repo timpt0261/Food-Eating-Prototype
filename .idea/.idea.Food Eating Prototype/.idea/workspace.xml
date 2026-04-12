@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="15eceb0a-c0b3-4463-ac55-8b63d9bb1f3d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Grow.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Grow.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Shrink.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Shrink.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Food WorkShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Food WorkShop.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +24,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Scalable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -101,6 +105,7 @@
       <updated>1775078008792</updated>
       <workItem from="1775078011533" duration="5533000" />
       <workItem from="1775169447155" duration="2037000" />
+      <workItem from="1775947801652" duration="1356000" />
     </task>
     <servers />
   </component>

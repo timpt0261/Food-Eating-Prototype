@@ -3,7 +3,7 @@ public abstract class FoodEffect : ScriptableObject
 {
     [field: SerializeField] public FoodEffectActivation activation = FoodEffectActivation.ONDROPPED;
     [field: SerializeField] public bool stackable;
- 
+    [field: SerializeField] public Material material;
 }
 
 public enum FoodEffectActivation

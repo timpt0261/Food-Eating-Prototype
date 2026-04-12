@@ -12,4 +12,7 @@ public class Emit : FoodEffect
     [field: SerializeField] public FoodEffectRepeat repeatEffect = FoodEffectRepeat.DO_ONCE;
     [feild:SerializeField] public GameObject emitPrefab;
 
+    [field: SerializeField] public float startSize;
+    [field: SerializeField] public Color startColor;
+
 }
