@@ -1,15 +1,14 @@
 name: Generate Documnetaion
 
-on: 
+on:
   workflow_dispatch:
     inputs:
-      version: 
-        description: 'Documentation Version (optional)'
+      version:
+        description: "Documentation Version (optional)"
         required: false
-        default: 'latest'
-      
+        default: "latest"
 
-permissions: 
+permissions:
   contents: write
   pages: write
   id-token: write
@@ -25,18 +24,18 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install Doygen & Dependencies
-        run : | 
+        run: |
           sudo apt-get update
           sudo apt-get install -y doxygen graphviz
-      
+
       - name: Generate Doxygen
-        run: | 
-            doxygen Doxyfile
+        run: |
+          doxygen Doxyfile
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-github-pages@v3.1.12
         with:
           github_token: ${{secrets.GH_TOKEN}}
-          publish_dir: ./docs/html
+          publish_dir: ./docs/doc.html
           force_orphan: true
       - name: Create Summary
         if: always()
@@ -45,7 +44,3 @@ jobs:
           echo "**Version:** ${{ github.event.inputs.version }}" >> $GITHUB_STEP_SUMMARY
           echo "**Generated at:** $(date)" >> $GITHUB_STEP_SUMMARY
           echo "🔗 [View Documentation](https://$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]').github.io/$(echo ${{ github.event.repository.name }}))" >> $GITHUB_STEP_SUMMARY
-      
-  
-            
-
