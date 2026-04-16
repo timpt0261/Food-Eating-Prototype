@@ -1,4 +1,4 @@
-name: Build project
+name: Build Unity Project & Deploy on ItchIo
 
 on:
   workflow_dispatch:
@@ -8,23 +8,29 @@ jobs:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         targetPlatform:
           - StandaloneWindows # Build a Windows standalone.
           - WebGL # WebGL.
     steps:
+      - runs: echo 
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/cache@v3
+      
+       
+      - if: ${{ hashFiles('Library/') != '' }}  
+        uses: actions/cache@v3
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
-          restore-keys: Library-
+          restore-keys: | Library-
+    
       - if: matrix.targetPlatform == 'Android'
         uses: jlumbroso/free-disk-space@v1.3.1
+    
       - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -32,7 +38,10 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-      - uses: actions/upload-artifact@v4
+          buildsPath: 'Builds'
+     
+      - name: Upload Artifacts 
+        uses: actions/upload-artifact@v4
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}

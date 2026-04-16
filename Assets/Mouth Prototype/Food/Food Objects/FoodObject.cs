@@ -28,27 +28,30 @@ public class FoodObject : MonoBehaviour
 
 	void Awake()
 	{
-		rb = GetComponent<Rigidbody>();
-		rb.mass = Random.Range(1.0f, 4.0f);
 		
 		// if stats has more than one effect -> for each effect in stats enable
-		if(stats.effects.Count <= 0)
-			return;
-		foreach (FoodEffect effect in stats.effects)
-		{
-			switch (effect.activation)
-			{
-				case  FoodEffectActivation.ONGRAB:
-					// subscribe
-					break;
-				case FoodEffectActivation.ONEATEN :
-					break;
-				case FoodEffectActivation.ONDROPPED:
-					break;
-				default:
-					break;
-			}
-		}
+		// if(stats.effects.Count <= 0)
+		// 	return;
+		// foreach (FoodEffect effect in stats.effects)
+		// {
+		// 	switch (effect.activation)
+		// 	{
+		// 		case  FoodEffectActivation.ONGRAB:
+		// 			// subscribe
+		// 			break;
+		// 		case FoodEffectActivation.ONEATEN :
+		// 			break;
+		// 		case FoodEffectActivation.ONDROPPED:
+		// 			break;
+		// 		default:
+		// 			break;
+		// 	}
+		// }
+	}
+
+	private void Start()
+	{
+		rb = GetComponent<Rigidbody>();
 	}
 
 	public void Interact(HandPickUp interactor)
