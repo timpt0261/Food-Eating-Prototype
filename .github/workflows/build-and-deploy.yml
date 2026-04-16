@@ -2,7 +2,11 @@ name: Build Unity Project & Deploy on ItchIo
 
 on:
   workflow_dispatch:
-
+    inputs:
+      version:
+        description: 'Documentation Version (optional)'
+        required: false
+        default: 'latest'
 jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
