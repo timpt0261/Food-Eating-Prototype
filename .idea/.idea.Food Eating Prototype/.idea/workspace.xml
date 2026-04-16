@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15eceb0a-c0b3-4463-ac55-8b63d9bb1f3d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy-to-itchio.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Food WorkShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Food WorkShop.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +16,13 @@
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="GitHub Workflow" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -28,7 +31,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Scalable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/FoodStats.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -106,6 +109,7 @@
       <workItem from="1775078011533" duration="5533000" />
       <workItem from="1775169447155" duration="2037000" />
       <workItem from="1775947801652" duration="1356000" />
+      <workItem from="1776372272197" duration="3040000" />
     </task>
     <servers />
   </component>
