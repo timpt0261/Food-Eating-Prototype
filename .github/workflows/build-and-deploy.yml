@@ -30,7 +30,7 @@ jobs:
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
-          restore-keys: | Library-
+          restore-keys: Library-
     
       - if: matrix.targetPlatform == 'Android'
         uses: jlumbroso/free-disk-space@v1.3.1
