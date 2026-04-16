@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15eceb0a-c0b3-4463-ac55-8b63d9bb1f3d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy-to-itchio.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build_unity_project.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-unity-project.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,7 @@
       <workItem from="1775078011533" duration="5533000" />
       <workItem from="1775169447155" duration="2037000" />
       <workItem from="1775947801652" duration="1356000" />
-      <workItem from="1776372272197" duration="3040000" />
+      <workItem from="1776372272197" duration="3359000" />
     </task>
     <servers />
   </component>
