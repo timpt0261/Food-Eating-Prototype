@@ -131,7 +131,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.ITCHIO_API_KEY }}
           CHANNEL: windows
-          ITCH_GAME: ${{env.ITCH_GAME_ID}}
-          ITCH_USER: ${{env.ITCH_USERNAME_}}
+          ITCH_GAME: ${{secrets.ITCH_GAME_ID}}
+          ITCH_USER: ${{secrets.ITCH_USERNAME_}}
           PACKAGE: build/WebGL
         
