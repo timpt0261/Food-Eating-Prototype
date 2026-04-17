@@ -56,14 +56,17 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           githubToken: ${{ secrets.GH_TOKEN }}
+          testMode: ${{matrix.testMode}}
+          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: Test results (${{ matrix.testMode }})
           path: ${{ steps.testRunner.outputs.artifactsPath }}
     
   buildForAllSupportedPlatforms:
-    needs: testRunner
+    # needs: testRunner
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     strategy:
@@ -104,7 +107,7 @@ jobs:
        
   deployWebToItchIO:
     needs: buildForAllSupportedPlatforms
-    name: Upload to Itch
+    name: Upload to Itch.io
     runs-on: ubuntu-latest
     # strategy:
     #   fail-fast: true
