@@ -118,14 +118,14 @@ jobs:
         with:
           name: Build-WebGL
           path: build/WebGL
-      
-          
-      - name: Butler Push
-        uses: yeslayla/butler-publish-itchio-action@v1.2.0
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.ITCHIO_API_KEY }}
-          ITCH_GAME: ${{secrets.ITCH_GAME_ID}}
-          ITCH_USER: ${{secrets.ITCH_USERNAME_}}
-          CHANNEL: webgl
-          PACKAGE: build/WebGL/
+                
+      - name: Deploy to Itch.io
+        uses: KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{secrets.ITCHIO_API_KEY}}
+          gameData: ./build/WebGL
+          itchUsername: ${{secrets.ITCH_USERNAME}}
+          itchGameId: ${{ secrets.ITCH_GAME_ID }}
+          buildChannel: webgl
+          buildNumber: ${{ needs.version.outputs.version_hash }}
         
