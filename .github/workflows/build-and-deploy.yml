@@ -3,13 +3,24 @@ name: Build Unity Project & Deploy on ItchIo
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: "Documentation Version (optional)"
-        required: false
-        default: "latest"
-env:
-  ITCH_USERNAME: ""
-  ITCH_GAME_ID: ""
+      itch-username:
+        description: "Itch.io UserName(https://[username].itch.io/)"
+        required: true
+        type: string
+
+      itch-game-id: 
+        description : "id of the game( e.g. username.itch.io/game-name, game-name)"
+        required: true
+        type: string
+
+      # build-type:
+      #   description: "Game Build Type"
+      #   required: true
+      #   type: choice
+      #   options: 
+      #     - webgl
+      #     - windows
+        
 
 jobs:
   # testRunner:
@@ -124,8 +135,8 @@ jobs:
         with:
           butlerApiKey: ${{secrets.ITCHIO_API_KEY}}
           gameData: ./build/WebGL
-          itchUsername: ${{secrets.ITCH_USERNAME}}
-          itchGameId: ${{ secrets.ITCH_GAME_ID }}
+          itchUsername: ${{github.event.inputs.itch-username}}
+          itchGameId: ${{ github.event.inputs.itch-game-id }}
           buildChannel: webgl
           buildNumber: ${{ needs.version.outputs.version_hash }}
         
