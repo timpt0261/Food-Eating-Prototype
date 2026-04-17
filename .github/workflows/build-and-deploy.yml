@@ -7,6 +7,9 @@ on:
         description: "Documentation Version (optional)"
         required: false
         default: "latest"
+env:
+  ITCH_USERNAME: ""
+  ITCH_GAME_ID: ""
 
 jobs:
   # testRunner:
@@ -110,16 +113,25 @@ jobs:
     #       - StandaloneWindows # Build a Windows standalone.
     #       - WebGL # WebGL.
     steps:
-      - name: Deploy - Itch.io
+      - name: Check if Artifact exist
+        id: artifact_path
+        run: |
+         # if path with channel name exist in /build
+          if [] ; then
+            echo "path = "
+
+      - name: Down Load Web Build Artifacts
         uses: actions/download-artifact@v4
         with:
           name: Build-WebGL
           path: build/WebGL
-      - uses: KikimoraGames/itch-publish@v0.0.3
-        with:
-          butlerApiKey: ${{secrets.ITCHIO_API_KEY}}
-          gameData: build/Build-WebGL
-          itchUsername: ${{secrets.ITCH_USERNAME}}
-          itchGameId: ${{ secrets.ITCH_GAME_ID }}
-          buildChannel: webgl
-          buildNumber: ${{ needs.version.outputs.version_hash }}
+      
+          
+      - uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.ITCHIO_API_KEY }}
+          CHANNEL: windows
+          ITCH_GAME: ${{env.ITCH_GAME_ID}}
+          ITCH_USER: ${{env.ITCH_USERNAME_}}
+          PACKAGE: build/WebGL
+        
