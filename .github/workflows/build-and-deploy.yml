@@ -120,11 +120,12 @@ jobs:
           path: build/WebGL
       
           
-      - uses: josephbmanley/butler-publish-itchio-action@master
+      - name: Butler Push
+        uses: yeslayla/butler-publish-itchio-action@v1.2.0
         env:
           BUTLER_CREDENTIALS: ${{ secrets.ITCHIO_API_KEY }}
-          CHANNEL: webgl
           ITCH_GAME: ${{secrets.ITCH_GAME_ID}}
           ITCH_USER: ${{secrets.ITCH_USERNAME_}}
-          PACKAGE: build/WebGL
+          CHANNEL: webgl
+          PACKAGE: build/WebGL/
         
