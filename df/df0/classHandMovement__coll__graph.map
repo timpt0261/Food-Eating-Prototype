@@ -1,0 +1,22 @@
+<map id="HandMovement" name="HandMovement">
+<area shape="rect" id="Node000001" title=" " alt="" coords="125,80,251,105"/>
+<area shape="rect" id="Node000003" href="$de/d4d/classHandPickUp.html" title=" " alt="" coords="276,256,377,281"/>
+<area shape="poly" id="edge4_Node000003_Node000001" title=" " alt="" coords="265,94,305,101,346,115,382,136,412,167,417,180,416,194,401,220,376,241,350,258,348,254,373,237,397,216,411,193,412,181,407,169,379,140,343,120,304,107,264,99"/>
+<area shape="rect" id="Node000004" href="$d9/df6/classPickUpInteraction.html" title=" " alt="" coords="33,168,170,193"/>
+<area shape="poly" id="edge7_Node000004_Node000001" title=" " alt="" coords="112,108,76,118,54,131,51,140,56,149,78,166,75,170,52,152,46,140,50,128,74,113,110,103"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="35,5,159,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,37,175,77,171,82,121,41"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="72,41,53,59,37,81,21,112,11,138,10,164,22,192,37,206,62,218,129,239,206,252,276,260,275,266,205,258,128,244,60,223,34,210,18,195,4,165,5,137,16,110,32,79,49,56,68,37"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="78,42,61,64,47,90,40,117,41,130,46,143,58,156,72,166,69,170,54,160,42,145,36,131,35,117,42,88,57,61,74,39"/>
+<area shape="rect" id="Node000005" href="$dc/df8/classFoodObject.html" title=" " alt="" coords="486,344,581,369"/>
+<area shape="poly" id="edge9_Node000005_Node000002" title=" " alt="" coords="173,20,299,28,438,41,500,50,551,61,586,74,596,82,600,91,600,270,595,294,583,315,552,345,548,342,579,311,590,292,595,270,595,92,592,85,584,79,550,66,499,55,437,46,298,33,173,25"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="325,242,320,186,311,157,294,131,274,116,250,106,252,101,277,111,298,128,315,155,325,185,331,242"/>
+<area shape="poly" id="edge10_Node000005_Node000003" title=" " alt="" coords="341,292,351,306,364,318,393,333,425,343,486,352,485,357,424,348,391,338,361,322,347,310,336,295"/>
+<area shape="poly" id="edge13_Node000001_Node000004" title=" " alt="" coords="136,159,157,142,171,123,181,104,186,107,176,126,161,146,139,163"/>
+<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="113,205,121,219,132,230,157,240,193,249,276,260,275,266,192,254,155,245,129,234,117,222,108,208"/>
+<area shape="poly" id="edge8_Node000003_Node000005" title=" " alt="" coords="500,340,435,308,366,284,368,279,437,303,502,335"/>
+<area shape="rect" id="Node000006" href="$d7/d35/classFoodStats.html" title=" " alt="" coords="646,256,733,281"/>
+<area shape="poly" id="edge11_Node000005_Node000006" title=" " alt="" coords="665,292,617,322,565,346,563,342,615,318,662,287"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="635,168,765,193"/>
+<area shape="poly" id="edge12_Node000006_Node000007" title=" " alt="" coords="699,208,693,256,688,255,694,207"/>
+</map>

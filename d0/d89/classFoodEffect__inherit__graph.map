@@ -1,0 +1,9 @@
+<map id="FoodEffect" name="FoodEffect">
+<area shape="rect" id="Node000001" title=" " alt="" coords="30,79,121,104"/>
+<area shape="rect" id="Node000003" href="$d3/d6b/classEmit.html" title=" " alt="" coords="5,152,57,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="63,117,41,153,36,150,59,114"/>
+<area shape="rect" id="Node000004" href="$db/db7/classScalable.html" title=" " alt="" coords="82,152,159,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="92,114,116,150,111,153,88,117"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="11,5,140,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,44,78,79,73,79,73,44"/>
+</map>

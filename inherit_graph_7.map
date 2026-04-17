@@ -1,0 +1,27 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,277,129,303"/>
+<area shape="rect" id="Node000001" href="$dd/d16/classControlJaw.html" title=" " alt="" coords="200,5,292,31"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="71,263,82,216,102,156,132,94,152,66,176,40,198,26,201,30,179,44,156,69,137,97,106,158,87,217,76,264"/>
+<area shape="rect" id="Node000002" href="$de/d50/classCountDownTimer.html" title=" " alt="" coords="179,55,313,80"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="74,263,87,225,109,179,138,131,176,89,194,78,197,82,179,93,142,134,113,181,92,227,79,265"/>
+<area shape="rect" id="Node000003" href="$dc/df8/classFoodObject.html" title=" " alt="" coords="199,104,293,129"/>
+<area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="78,264,116,202,144,168,176,139,197,127,200,131,179,143,148,172,121,205,83,267"/>
+<area shape="rect" id="Node000004" href="$d6/dcc/classFoodSpawner.html" title=" " alt="" coords="191,153,301,179"/>
+<area shape="poly" id="edge10_Node000000_Node000004" title=" " alt="" coords="87,265,126,226,176,188,200,176,202,181,179,192,129,230,91,269"/>
+<area shape="rect" id="Node000005" href="$d2/d2c/classGameManager.html" title=" " alt="" coords="187,203,305,228"/>
+<area shape="poly" id="edge11_Node000000_Node000005" title=" " alt="" coords="105,269,176,237,206,226,208,231,178,242,107,274"/>
+<area shape="rect" id="Node000006" href="$d2/d8e/classHandMovement.html" title=" " alt="" coords="183,252,309,277"/>
+<area shape="poly" id="edge12_Node000000_Node000006" title=" " alt="" coords="143,277,182,271,183,276,144,282"/>
+<area shape="rect" id="Node000007" href="$de/d4d/classHandPickUp.html" title=" " alt="" coords="195,301,297,327"/>
+<area shape="poly" id="edge13_Node000000_Node000007" title=" " alt="" coords="144,298,195,305,194,310,143,303"/>
+<area shape="rect" id="Node000008" href="$dc/d39/classHeadMovment.html" title=" " alt="" coords="187,351,305,376"/>
+<area shape="poly" id="edge14_Node000000_Node000008" title=" " alt="" coords="110,306,178,336,211,348,209,353,176,340,108,311"/>
+<area shape="rect" id="Node000009" href="$d7/d94/classMouthMovement.html" title=" " alt="" coords="179,400,313,425"/>
+<area shape="poly" id="edge15_Node000000_Node000009" title=" " alt="" coords="92,311,130,349,179,385,204,397,202,402,176,390,127,353,88,315"/>
+<area shape="rect" id="Node000010" href="$d9/df6/classPickUpInteraction.html" title=" " alt="" coords="177,449,315,475"/>
+<area shape="poly" id="edge16_Node000000_Node000010" title=" " alt="" coords="83,313,121,374,148,406,179,435,201,447,198,452,176,439,144,410,117,377,79,316"/>
+<area shape="rect" id="Node000011" href="$dd/d89/classQuickTimeEvent.html" title=" " alt="" coords="181,499,311,524"/>
+<area shape="poly" id="edge17_Node000000_Node000011" title=" " alt="" coords="79,315,93,352,114,398,143,444,179,484,199,496,196,501,176,488,138,447,109,400,88,354,74,317"/>
+<area shape="rect" id="Node000012" href="$d8/d95/classRespawnFood.html" title=" " alt="" coords="190,548,302,573"/>
+<area shape="poly" id="edge18_Node000000_Node000012" title=" " alt="" coords="76,315,87,362,107,420,137,481,157,509,179,533,198,546,195,550,176,537,152,512,133,483,102,422,82,363,71,317"/>
+</map>

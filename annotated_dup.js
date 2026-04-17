@@ -1,0 +1,26 @@
+var annotated_dup =
+[
+    [ "CharacterStats", "d6/d4e/classCharacterStats.html", "d6/d4e/classCharacterStats" ],
+    [ "ControlJaw", "dd/d16/classControlJaw.html", "dd/d16/classControlJaw" ],
+    [ "CountDownTimer", "de/d50/classCountDownTimer.html", "de/d50/classCountDownTimer" ],
+    [ "Emit", "d3/d6b/classEmit.html", "d3/d6b/classEmit" ],
+    [ "FoodEffect", "d9/d62/classFoodEffect.html", "d9/d62/classFoodEffect" ],
+    [ "FoodObject", "dc/df8/classFoodObject.html", "dc/df8/classFoodObject" ],
+    [ "FoodSpawner", "d6/dcc/classFoodSpawner.html", "d6/dcc/classFoodSpawner" ],
+    [ "FoodStats", "d7/d35/classFoodStats.html", "d7/d35/classFoodStats" ],
+    [ "GameManager", "d2/d2c/classGameManager.html", "d2/d2c/classGameManager" ],
+    [ "HandMovement", "d2/d8e/classHandMovement.html", "d2/d8e/classHandMovement" ],
+    [ "HandPickUp", "de/d4d/classHandPickUp.html", "de/d4d/classHandPickUp" ],
+    [ "HeadMovment", "dc/d39/classHeadMovment.html", "dc/d39/classHeadMovment" ],
+    [ "IDamageable", "d3/d6c/interfaceIDamageable.html", "d3/d6c/interfaceIDamageable" ],
+    [ "IDrinkable", "dc/d16/interfaceIDrinkable.html", "dc/d16/interfaceIDrinkable" ],
+    [ "IEdible", "d9/daa/interfaceIEdible.html", "d9/daa/interfaceIEdible" ],
+    [ "IGameState", "d1/d88/interfaceIGameState.html", "d1/d88/interfaceIGameState" ],
+    [ "IGameStateMachine", "dd/d46/interfaceIGameStateMachine.html", "dd/d46/interfaceIGameStateMachine" ],
+    [ "IInteractable", "d6/db4/interfaceIInteractable.html", "d6/db4/interfaceIInteractable" ],
+    [ "MouthMovement", "d7/d94/classMouthMovement.html", "d7/d94/classMouthMovement" ],
+    [ "PickUpInteraction", "d9/df6/classPickUpInteraction.html", "d9/df6/classPickUpInteraction" ],
+    [ "QuickTimeEvent", "dd/d89/classQuickTimeEvent.html", "dd/d89/classQuickTimeEvent" ],
+    [ "RespawnFood", "d8/d95/classRespawnFood.html", "d8/d95/classRespawnFood" ],
+    [ "Scalable", "db/db7/classScalable.html", "db/db7/classScalable" ]
+];
