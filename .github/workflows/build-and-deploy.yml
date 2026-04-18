@@ -79,19 +79,14 @@ jobs:
 
   buildForAllSupportedPlatforms:
     # needs: testRunner
-    name: Build for ${{ github.event.inputs.build-type}}
+    name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         targetPlatform:
-          #  - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          #  - StandaloneWindows # Build a Windows standalone.
-          #  - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          #  - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          #  - iOS # Build an iOS player.
-          #  - Android # Build an Android .apk standalone app.
-           - WebGL # WebGL.
+          - StandaloneWindows # Build a Windows standalone.
+          - WebGL # WebGL.
     steps:
       - uses: actions/checkout@v4
         with:
@@ -117,10 +112,6 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-      
-      - run : |
-          echo artifact_name="Build-${{ matrix.targetPlatform }}" >> GITHUB_ENV
-          echo artifact_path="build/${{ matrix.targetPlatform }}" >> GITHUB_ENV
 
   deployWebToItchIO:
     needs: buildForAllSupportedPlatforms
@@ -136,14 +127,14 @@ jobs:
       - name: Down Load Web Build Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: ${{github.env.artifact_name}}
-          path: ${{github.env.artifact_path}}
+          name: Build-WebGL
+          path: build/WebGL
                 
       - name: Deploy to Itch.io
         uses: KikimoraGames/itch-publish@v0.0.3
         with:
           butlerApiKey: ${{secrets.ITCHIO_API_KEY}}
-          gameData: ${{github.env.artifact_path}}
+          gameData: ./build/WebGL
           itchUsername: ${{github.event.inputs.itch-username}}
           itchGameId: ${{ github.event.inputs.itch-game-id }}
           buildChannel: webgl
