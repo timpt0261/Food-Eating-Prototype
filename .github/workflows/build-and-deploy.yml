@@ -8,8 +8,8 @@ on:
         required: true
         type: string
 
-      itch-game-id: 
-        description : "id of the game( e.g. username.itch.io/game-name, game-name)"
+      itch-game-id:
+        description: "id of the game( e.g. username.itch.io/game-name, game-name)"
         required: true
         type: string
 
@@ -17,10 +17,9 @@ on:
       #   description: "Game Build Type"
       #   required: true
       #   type: choice
-      #   options: 
+      #   options:
       #     - webgl
       #     - windows
-        
 
 jobs:
   testRunner:
@@ -61,15 +60,16 @@ jobs:
             Library-
 
       - name: Run tests
+        id: test-runner
         uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          githubToken: ${{ secrets.GH_TOKEN }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
           testMode: ${{matrix.testMode}}
-          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*'
+          coverageOptions: "generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+my.assembly.*"
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -79,9 +79,9 @@ jobs:
 
   buildForAllSupportedPlatforms:
     # needs: testRunner
-    name: Build for ${{ matrix.targetPlatform }}
+    name: Build for WebGL
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -109,7 +109,7 @@ jobs:
 
   deployWebToItchIO:
     needs: buildForAllSupportedPlatforms
-    name: Upload to Itch.io
+    name: Deploy to Itch.io Website
     runs-on: ubuntu-latest
 
     steps:
@@ -118,7 +118,7 @@ jobs:
         with:
           name: Build-WebGL
           path: build/WebGL
-                
+
       - name: Deploy to Itch.io
         uses: KikimoraGames/itch-publish@v0.0.3
         with:
