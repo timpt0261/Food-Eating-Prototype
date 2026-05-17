@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - FoodItems
+  - Surface
   layers:
   - Default
   - TransparentFX

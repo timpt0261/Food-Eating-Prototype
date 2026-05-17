@@ -86,7 +86,6 @@ public class HandPickUp : MonoBehaviour
 
 	private void HandleInteractable(bool isPlayerHoldingObject)
 	{
-		_interactable.Interact(this);
 		// is able to interact and have enough stamina
 		if (interact && _handMovement.Stamina > 0) { HandleInteractOn(isPlayerHoldingObject); return; }
 		HandleInteractOff(isPlayerHoldingObject);
@@ -96,7 +95,7 @@ public class HandPickUp : MonoBehaviour
 	private void HandleInteractOn(bool isPlayerHoldingObject)
 	{
 		if (!isPlayerHoldingObject)
-			_playerPickUpInteraction.PickUpObject(_interactable_Obj);
+			_playerPickUpInteraction.PickUpObject(_interactable_Obj, this);
 		else
 			_playerPickUpInteraction.MoveObject();
 	}

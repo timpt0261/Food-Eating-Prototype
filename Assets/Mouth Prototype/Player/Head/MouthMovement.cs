@@ -89,7 +89,7 @@ public class MouthMovement : MonoBehaviour
 
         currentPitch = Mathf.Clamp(currentPitch, minPitch, maxPitch);
 
-        Debug.Log($"{currentPitch}");
+        // Debug.Log($"{currentPitch}");
 
         Quaternion roofRot = Quaternion.Euler(-currentPitch, 0, 0);
         Quaternion jawRot = Quaternion.Euler(currentPitch, 0, 0);

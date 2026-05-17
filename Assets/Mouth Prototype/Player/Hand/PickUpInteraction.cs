@@ -10,6 +10,7 @@ public class PickUpInteraction : MonoBehaviour
 	[SerializeField] float holdAreaRadius = 5.0f;
 	[SerializeField] private GameObject go_heldObject = null;
 	private Rigidbody rb_heldObject = null;
+	private FoodObject _foodObject = null;
 
 	public Rigidbody RB_HeldObject => rb_heldObject;
 
@@ -55,15 +56,22 @@ public class PickUpInteraction : MonoBehaviour
 	}
 
 
-	public void PickUpObject(GameObject pickObj)
+	public void PickUpObject(GameObject pickObj, HandPickUp interactor)
 	{
 		// Debug.Log("Picking Up object");
 		pickObj.TryGetComponent<Rigidbody>(out Rigidbody pickObjRB);
+		pickObj.TryGetComponent<FoodObject>(out FoodObject pickUpFoodObject);
 
 		if (!pickObjRB) return;
 		rb_heldObject = pickObjRB;
+		
+		if(!pickUpFoodObject) return;
+		_foodObject = pickUpFoodObject;
+		_foodObject.SetInteractor(interactor);
+		// _foodObject.UpdateState(FOOD_OBJ_STATE.GRABBED);
+		
 		updateHeldObjectRigidBody(pickObj, true);
-
+		
 
 
 	}
@@ -72,17 +80,30 @@ public class PickUpInteraction : MonoBehaviour
 	{
 		// Debug.Log("Droping Object");
 		if (rb_heldObject == null) return;
+		
+		// _foodObject.UpdateState(FOOD_OBJ_STATE.DROPPED);
+		_foodObject.SetInteractor(null);
 		updateHeldObjectRigidBody(null, false);
 		
 	}
 
 	private void updateHeldObjectRigidBody(GameObject pickObj, bool handle)
 	{
-
+		// // update food state
+		// FOOD_OBJ_STATE foodState = handle ? FOOD_OBJ_STATE.GRABBED : FOOD_OBJ_STATE.DROPPED;
+		// FoodObject foodObject = pickObj.GetComponent<FoodObject>();
+		// foodObject.UpdateState(foodState);
+		
+		// update rigidbody
 		rb_heldObject.useGravity = !handle;
 		rb_heldObject.linearDamping = handle ? 10 : 1;
 		rb_heldObject.constraints = handle ? RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.None;
 		rb_heldObject.transform.parent = handle ? holdArea : null;
+		
+		
+		
+		
+		
 		go_heldObject = handle ? pickObj : null;
 
 	}
