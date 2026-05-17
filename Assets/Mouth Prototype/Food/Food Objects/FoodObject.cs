@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System;
+
 
 [RequireComponent(typeof(Rigidbody))]
 public class FoodObject : MonoBehaviour
@@ -38,9 +40,11 @@ public class FoodObject : MonoBehaviour
 	
 	private FOOD_OBJ_STATE _foodObjState = FOOD_OBJ_STATE.GROUNDED;
 
-	public static event Action OnGrab;
-	public static event Action OnEaten;
-	public static event Action OnDropped;
+	public UnityEvent OnGrab;
+	public UnityEvent OnEaten;
+	public UnityEvent OnDropped;
+	public UnityEvent OnAir;
+	public UnityEvent OnGrounded;
 
 	void Awake()
 	{
@@ -89,6 +93,12 @@ public class FoodObject : MonoBehaviour
 			return;
 		}
 
+		if (_isPlayerEatingObject)
+		{	
+			UpdateState(FOOD_OBJ_STATE.EATEN);
+			return;
+		}
+
 		if (this._rigidbody.useGravity)
 		{
 			UpdateState(FOOD_OBJ_STATE.DROPPED); 
@@ -109,6 +119,28 @@ public class FoodObject : MonoBehaviour
 	{
 		if(newState == this._foodObjState) return;
 		this._foodObjState = newState;
+		switch (newState)
+		{
+			case FOOD_OBJ_STATE.GROUNDED:
+				this.OnGrounded.Invoke();
+				break;
+			case FOOD_OBJ_STATE.GRABBED:
+				this.OnGrab.Invoke();
+				break;
+			case FOOD_OBJ_STATE.DROPPED :
+				this.OnDropped.Invoke();
+				break;
+			case FOOD_OBJ_STATE.AIR:
+				this.OnAir.Invoke();
+				break;
+			case FOOD_OBJ_STATE.EATEN:
+				this.OnEaten.Invoke();
+				break;
+			default:
+				this.OnGrounded.Invoke();
+				break;
+		
+		}
 	}
 
 	#region Collision Handling
