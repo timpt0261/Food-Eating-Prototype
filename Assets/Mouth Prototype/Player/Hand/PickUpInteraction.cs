@@ -67,9 +67,7 @@ public class PickUpInteraction : MonoBehaviour
 		
 		if(!pickUpFoodObject) return;
 		_foodObject = pickUpFoodObject;
-		_foodObject.SetInteractor(interactor);
-		// _foodObject.UpdateState(FOOD_OBJ_STATE.GRABBED);
-		
+		_foodObject.Interactor = interactor;
 		updateHeldObjectRigidBody(pickObj, true);
 		
 
@@ -79,10 +77,9 @@ public class PickUpInteraction : MonoBehaviour
 	public void DropObject()
 	{
 		// Debug.Log("Droping Object");
-		if (rb_heldObject == null) return;
+		if (rb_heldObject == null || _foodObject == null) return;
 		
-		// _foodObject.UpdateState(FOOD_OBJ_STATE.DROPPED);
-		_foodObject.SetInteractor(null);
+		_foodObject.Interactor = null;
 		updateHeldObjectRigidBody(null, false);
 		
 	}
@@ -92,7 +89,7 @@ public class PickUpInteraction : MonoBehaviour
 		// // update food state
 		// FOOD_OBJ_STATE foodState = handle ? FOOD_OBJ_STATE.GRABBED : FOOD_OBJ_STATE.DROPPED;
 		// FoodObject foodObject = pickObj.GetComponent<FoodObject>();
-		// foodObject.UpdateState(foodState);
+		// foodObject.UpdateFoodObjectState(foodState);
 		
 		// update rigidbody
 		rb_heldObject.useGravity = !handle;

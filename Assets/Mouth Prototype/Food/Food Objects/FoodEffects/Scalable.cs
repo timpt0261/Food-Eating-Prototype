@@ -2,6 +2,7 @@ using DG.Tweening;
 using DG.Tweening.Core.Easing;
 using Unity.VisualScripting;
 using UnityEngine;
+using Sequence = DG.Tweening.Sequence;
 
 
 [CreateAssetMenu(fileName = "Scalable", menuName = "FoodEffect/Scalable")]
@@ -12,6 +13,20 @@ public class Scalable : FoodEffect
     [field: SerializeField] public FoodEffectRepeat repeatEffect = FoodEffectRepeat.DO_ONCE;
     [field: SerializeField] public Ease scaleEase = Ease.Linear;
     [field: SerializeField] public AnimationCurve scaleCurve = AnimationCurve.Linear(0, 0.1f, 1, 1);
+    [field: SerializeField] public float duration = 1;
 
+   
+
+    public override void Activate()
+    {
+        if(_foodObject == null) return;
+        Debug.Log("Activating Scalable");
+       
+    }
+
+    public override void Deactivate()
+    {
+        
+    }
 }
 

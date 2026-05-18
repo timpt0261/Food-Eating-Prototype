@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="15eceb0a-c0b3-4463-ac55-8b63d9bb1f3d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Scalable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Scalable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/FoodStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/FoodStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Player/Hand/PickUpInteraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Player/Hand/PickUpInteraction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Food WorkShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Food WorkShop.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +33,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1eb9db207454431c84a47bcd81e79c3746ae00/6b/553687d2/List`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Scalable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/FoodStats.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Player/Hand/HandPickUp.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Player/Head/MouthMovement.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -127,6 +134,7 @@
       <workItem from="1778980561062" duration="192000" />
       <workItem from="1778980815415" duration="102000" />
       <workItem from="1778981081898" duration="9323000" />
+      <workItem from="1779060012209" duration="8127000" />
     </task>
     <servers />
   </component>

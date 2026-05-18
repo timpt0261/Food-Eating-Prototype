@@ -626,20 +626,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+  groundEffects: []
   debugMode: 0
-  OnGrab:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEaten:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDropped:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  OnGrounded:
+  onGrounded:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &365685287
@@ -2247,21 +2236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1aa84103c016d42b19c2c63672f923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 11400000, guid: 0629699f043f6304ca0709a15fc823ff, type: 2}
+  groundEffects:
+  - {fileID: 11400000, guid: 7182a5ee346810c41948bd1f165f6597, type: 2}
   debugMode: 1
-  OnGrab:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEaten:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDropped:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  OnGrounded:
+  onGrounded:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1434430633
@@ -2563,20 +2542,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+  groundEffects: []
   debugMode: 0
-  OnGrab:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEaten:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDropped:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  OnGrounded:
+  onGrounded:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1569839437 stripped

@@ -15,4 +15,16 @@ public class Emit : FoodEffect
     [field: SerializeField] public float startSize;
     [field: SerializeField] public Color startColor;
 
+
+
+
+    public override void Activate()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Deactivate()
+    {
+        throw new System.NotImplementedException();
+    }
 }
