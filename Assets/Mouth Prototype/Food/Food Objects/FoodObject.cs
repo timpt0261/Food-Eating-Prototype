@@ -17,8 +17,14 @@ public class FoodObject : MonoBehaviour
 		get => _interactor;
 		set => _interactor = value;
 	}
-	
-	
+
+
+	public Rigidbody Rigidbody
+	{
+		get => _rigidbody;
+		set => _rigidbody = value;
+	}
+
 	// Stats
 	[field: SerializeField] private FoodStats stats;
 	public FoodStats Stats {
@@ -29,13 +35,7 @@ public class FoodObject : MonoBehaviour
 	// Mesh
 
 	// SFX
-
-	// Effects when PickedUp
-	[field: SerializeField] private List<FoodEffect> groundEffects;
-	// [field: SerializeField] private List<FoodEffect> grabEffects;
-	// [field: SerializeField] private List<FoodEffect> dropEffects;
-	// [field: SerializeField] private List<FoodEffect> eatEffects;
-
+	
 	// Effects when Eating
 	
 	// Collision
@@ -64,13 +64,10 @@ public class FoodObject : MonoBehaviour
 
 	void Awake()
 	{
-		// get all effects to have a refernce instance of food object and food stats
-		foreach (FoodEffect effect in groundEffects)
-		{
-			effect.Intialize(this);
-			onGrounded.AddListener(effect.Activate);
-		}
+		RegisterFoodEffectsFromStats();
 	}
+
+	
 
 	private void Start()
 	{
@@ -116,6 +113,36 @@ public class FoodObject : MonoBehaviour
 			
 	}
 	
+	
+	private void RegisterFoodEffectsFromStats()
+	{
+		// get all effects to have a refernce instance of food object and food stats
+		foreach (FoodEffect effect in stats.effects)
+		{
+			switch (effect.effectActive)
+			{
+				case FoodEffect.FOOD_EFFECT_ACTIVE.GROUND:
+					effect.Intialize(this, this.onGrounded);
+					break;
+				case FoodEffect.FOOD_EFFECT_ACTIVE.GRABBED:
+					effect.Intialize(this, this.onGrab);
+					break;
+				case FoodEffect.FOOD_EFFECT_ACTIVE.EATEN:
+					effect.Intialize(this, this.onEaten);
+					break;
+				case FoodEffect.FOOD_EFFECT_ACTIVE.DROPPED:
+					effect.Intialize(this, this.onDropped);
+					break;
+				case FoodEffect.FOOD_EFFECT_ACTIVE.AIR:
+					effect.Intialize(this, this.onAir);
+					break;
+				default:
+					effect.Intialize(this, this.onGrounded);
+					break;
+			}
+			
+		}
+	}
 	
 
 	#region Food Object State
@@ -185,6 +212,7 @@ public class FoodObject : MonoBehaviour
 	
 	private void OnGUI()
 	{
+		if(!debugMode) return;
 		_debugGUIStyle.fontSize = 12;
 		_debugGUIStyle.normal.textColor = Color.green;
 		float offset = _debugGUIStyle.fontSize;
@@ -207,6 +235,9 @@ public class FoodObject : MonoBehaviour
 	private void OnDestroy()
 	{
 		onGrounded.RemoveAllListeners();
+		// onEaten.RemoveAllListeners();
+		// onGrab.RemoveAllListeners();
+		// onAir.RemoveAllListeners();
 	}
 }
 
