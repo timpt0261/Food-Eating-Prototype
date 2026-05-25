@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -31,12 +32,7 @@ public class FoodObject : MonoBehaviour
 		get => stats;
 		
 	}
-
-	// Mesh
-
-	// SFX
-	
-	// Effects when Eating
+	private List<Effect> _foodEffectsActive = new List<Effect>();
 	
 	// Collision
 	private int _grabCounter = 0;
@@ -55,11 +51,11 @@ public class FoodObject : MonoBehaviour
 	private FOOD_OBJ_STATE _foodObjState = FOOD_OBJ_STATE.GROUNDED;
 
 	[Header ("Event Handling")]
-	[field: SerializeField] UnityEvent onGrounded;
-	private UnityEvent onGrab;
-	private UnityEvent onEaten;
-	private UnityEvent onDropped;
-	private UnityEvent onAir;
+	[field: SerializeField] internal UnityEvent onGrounded;
+	internal UnityEvent onGrab;
+	internal UnityEvent onEaten;
+	internal UnityEvent onDropped;
+	internal UnityEvent onAir;
 	
 
 	void Awake()
@@ -78,8 +74,18 @@ public class FoodObject : MonoBehaviour
 		_grabCounter = 0; 
 		_dropCounter = 0;
 		_biteCounter = 0;
+		
 	}
-	
+
+	private void Update()
+	{
+		if(this._foodEffectsActive.Count <= 0) return;
+		foreach (Effect effect in _foodEffectsActive )
+			effect.Tick(Time.deltaTime);
+		
+	}
+
+
 
 	private void FixedUpdate()
 	{
@@ -117,30 +123,30 @@ public class FoodObject : MonoBehaviour
 	private void RegisterFoodEffectsFromStats()
 	{
 		// get all effects to have a refernce instance of food object and food stats
-		foreach (FoodEffect effect in stats.effects)
+		foreach (Effect effect in stats.effects)
 		{
-			switch (effect.effectActive)
+			switch (effect.stateToActivateFoodEffect)
 			{
-				case FoodEffect.FOOD_EFFECT_ACTIVE.GROUND:
+				case Effect.FOOD_EFFECT_ACTIVE.GROUND:
 					effect.Intialize(this, this.onGrounded);
 					break;
-				case FoodEffect.FOOD_EFFECT_ACTIVE.GRABBED:
+				case Effect.FOOD_EFFECT_ACTIVE.GRABBED:
 					effect.Intialize(this, this.onGrab);
 					break;
-				case FoodEffect.FOOD_EFFECT_ACTIVE.EATEN:
+				case Effect.FOOD_EFFECT_ACTIVE.EATEN:
 					effect.Intialize(this, this.onEaten);
 					break;
-				case FoodEffect.FOOD_EFFECT_ACTIVE.DROPPED:
+				case Effect.FOOD_EFFECT_ACTIVE.DROPPED:
 					effect.Intialize(this, this.onDropped);
 					break;
-				case FoodEffect.FOOD_EFFECT_ACTIVE.AIR:
+				case Effect.FOOD_EFFECT_ACTIVE.AIR:
 					effect.Intialize(this, this.onAir);
 					break;
 				default:
 					effect.Intialize(this, this.onGrounded);
 					break;
 			}
-			
+			this._foodEffectsActive.Add(effect);
 		}
 	}
 	
@@ -155,21 +161,21 @@ public class FoodObject : MonoBehaviour
 		switch (newFoodObjectState)
 		{
 			case FOOD_OBJ_STATE.GROUNDED:
-				this.onGrounded.Invoke();
+				this.onGrounded?.Invoke();
 				break;
 			case FOOD_OBJ_STATE.GRABBED:
-			//	this.onGrab.Invoke();
+				this.onGrab?.Invoke();
 				this._grabCounter++;
 				break;
 			case FOOD_OBJ_STATE.DROPPED :
-			//	this.onDropped.Invoke();
+				this.onDropped?.Invoke();
 				this._dropCounter++;
 				break;
 			case FOOD_OBJ_STATE.AIR:
-			//	this.onAir.Invoke();
+				this.onAir?.Invoke();
 				break;
 			case FOOD_OBJ_STATE.EATEN:
-			//	this.onEaten.Invoke();
+				this.onEaten?.Invoke();
 				this._biteCounter++;
 				break;
 			default:
@@ -226,6 +232,7 @@ public class FoodObject : MonoBehaviour
 		GUI.Label(new Rect(_debugGuIposition.x, _debugGuIposition.y + (12 * 7), _debugGuIsize.x, _debugGuIsize.y), $"Grab Counter: {this._grabCounter}", _debugGUIStyle); // Grab Counter
 		GUI.Label(new Rect(_debugGuIposition.x, _debugGuIposition.y + (12 * 8), _debugGuIsize.x, _debugGuIsize.y), $"Drop Counter: {this._dropCounter}", _debugGUIStyle); // Drop Counter
 		GUI.Label(new Rect(_debugGuIposition.x, _debugGuIposition.y + (12 * 9), _debugGuIsize.x, _debugGuIsize.y), $"Bite Counter: {this._biteCounter}", _debugGUIStyle); // Bite Counter
+		GUI.Label(new Rect(_debugGuIposition.x, _debugGuIposition.y + (12 * 10), _debugGuIsize.x, _debugGuIsize.y), $"Effect Details: {this._foodEffectsActive}", _debugGUIStyle); // Effect Detaails
 		
 
 	}

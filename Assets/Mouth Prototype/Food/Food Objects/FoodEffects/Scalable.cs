@@ -1,51 +1,76 @@
 using DG.Tweening;
 using UnityEngine;
-using Unity.Cinemachine;
-using UnityEngine.Events;
+
 
 
 [CreateAssetMenu(fileName = "Scalable", menuName = "FoodEffect/Scalable")]
-public class Scalable : FoodEffect
+public class Scalable : Effect
 {
     // do once, ping-pong, repeat
-    [field: SerializeField] public int repeatCounter = 1;
-    [field: SerializeField] public FoodEffectRepeat repeatEffect = FoodEffectRepeat.DO_ONCE;
-    [field: SerializeField] public Ease scaleEase = Ease.Linear;
+    // [field: SerializeField] public int repeatCounter = 1;
+    // [field: SerializeField] public FoodEffectRepeat repeatEffect = FoodEffectRepeat.DO_ONCE;
 
+    [Header("Scale Factors")]
     [Tooltip(" Scale Curve value determines actual scale")]
-    [field: SerializeField] public AnimationCurve scaleCurve = AnimationCurve.Linear(0, 0.1f, 1, 1.0f);
-   
-    [Tooltip("duration of scale animation in seconds")]
-    [field: SerializeField] public float scaleDuration = 1;
+    [Range(0.1f, 3.5f)]
+    [field: SerializeField]
+    public float targetScale = 2f;
+
+    [Header("Start Scale")] [Tooltip("The Speed of the Scale ")] [field: SerializeField]
+    public float startSpeed = 1.5f;
+
+    [field: SerializeField] public Ease startScaleEase = Ease.Linear;
+
+    private Vector3 _startingScale;
     
-    private bool _isActive = false;
-    public bool IsActive { get => _isActive; }
+    [Header("End Scale Scale")]
+    [Tooltip("The Speed of the Scale ")]
+    [field: SerializeField] public float endSpeed = 1.5f;
+    
+    [field: SerializeField] public Ease endScaleEase = Ease.Linear;
+    
+    [Header("Rigidbody")]
+    [field:SerializeField] public bool _isMassChanged = true;
 
-
-    public override void Intialize(FoodObject foodObject, UnityEvent @event)
-    {
-        base.Intialize(foodObject, @event);
-        
-    }
 
     public override void Activate()
     {
-        if(this._foodObject == null) return;
-        Debug.Log("Activating Scalable");
-        _isActive = true;
-        this.EffectCount++;
-        float endValue = scaleCurve.Evaluate(10); // modifity to stats scale * multiplier/scalar
-        this._foodObject.transform.DOScale( endValue, this.scaleDuration).SetEase(this.scaleEase);
-        this._foodObject.Rigidbody.mass += endValue;
-       
+        if (!this._foodObject) return;
+        if (this._isActive) return;
+        if (this._effectCoolDownTimer.IsRunning) return;
+        
+        this._isActive = true;
+
+        if (this.isEffectTimed)
+        {
+            this._effectTimer.Reset();
+            this._effectTimer.Start();
+        }
+
+        this._startingScale = this._foodObject.transform.localScale;
+        if (this._isMassChanged) this._foodObject.Rigidbody.mass *= targetScale;
+        this._foodObject.transform.DOScale(targetScale, this.startSpeed).SetEase(this.startScaleEase);
+        
     }
 
     public override void Deactivate()
     {
-        float startValue = scaleCurve.Evaluate(0);
-        this._foodObject.transform.DOScale(startValue, this.scaleDuration).SetEase(this.scaleEase);
-        _isActive = false;
-        
+        if (!this._isActive) return;
+        this._isActive = false;
+
+        if (this.isEffectTimed)
+            this._effectTimer.Stop();
+
+        if (this._isMassChanged) this._foodObject.Rigidbody.mass /= targetScale;
+        this._foodObject.transform.DOScale(_startingScale, this.endSpeed).SetEase(this.endScaleEase);
+
+        this._effectCoolDownTimer.Reset();
+        this._effectCoolDownTimer.Start();
+        this._isActive = false;
     }
+
+    
+
+
 }
-// keep track of current scale
+

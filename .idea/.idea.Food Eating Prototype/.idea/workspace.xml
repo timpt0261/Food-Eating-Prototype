@@ -5,18 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15eceb0a-c0b3-4463-ac55-8b63d9bb1f3d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Utility/Timer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Utility/Timer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/indexLayout.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effect.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Food Eating Prototype/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Grow.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Grow.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Shrink.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effects/Shrink.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effect.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Scalable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Scalable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/Normal.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/Normal.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/FoodStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/FoodStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Player/Head/HeadMovment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Player/Head/HeadMovment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Food WorkShop.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Scenes/Food WorkShop.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mouth Prototype/Utility/Timer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mouth Prototype/Utility/Timer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +40,15 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1eb9db207454431c84a47bcd81e79c3746ae00/6b/553687d2/List`1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Emit.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/34decb3c52e041bfa30d0f679041cf8e212600/14/c5ed8547/UnityEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b8f4b622af2f419b87f5e96048b4b44c2b400/47/49878e2f/Physics.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/FoodEffectStack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Scalable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodStats/FoodStats.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Player/Hand/HandMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Player/Hand/HandPickUp.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Player/Head/MouthMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Mouth Prototype/Utility/Timer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -53,6 +58,9 @@
     <urls />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
@@ -62,27 +70,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Device#class com.jetbrains.rider.plugins.unity.run.devices.UnityEditorDeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider#Unity Attach To: Attach to": "Unity Editor",
-    "DeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider": "Unity Editor",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Unity Attach To.Attach to.executor": "Debug",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Device#class com.jetbrains.rider.plugins.unity.run.devices.UnityEditorDeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider#Unity Attach To: Attach to&quot;: &quot;Unity Editor&quot;,
+    &quot;DeviceKind#com.jetbrains.rider.plugins.unity.run.devices.UnityDevicesProvider&quot;: &quot;Unity Editor&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Unity Attach To.Attach to.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Unity Attach To.Attach to">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Builds\Food Eating Prototype.exe" />
@@ -149,6 +157,11 @@
       <workItem from="1779060012209" duration="8452000" />
       <workItem from="1779397685001" duration="2647000" />
       <workItem from="1779400393099" duration="5638000" />
+      <workItem from="1779417637444" duration="2720000" />
+      <workItem from="1779568844917" duration="5252000" />
+      <workItem from="1779604288506" duration="4659000" />
+      <workItem from="1779654718333" duration="2957000" />
+      <workItem from="1779658904664" duration="8337000" />
     </task>
     <servers />
   </component>
@@ -204,6 +217,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Mouth Prototype/Food/Food Objects/FoodEffects/Effect.cs</url>
+          <line>71</line>
+          <properties documentPath="C:\Users\rchav\Documents\Unity Projects\Food Eating Prototype\Assets\Mouth Prototype\Food\Food Objects\FoodEffects\Effect.cs" containingFunctionPresentation="Method 'Tick'">
+            <startOffsets>
+              <option value="1931" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1972" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

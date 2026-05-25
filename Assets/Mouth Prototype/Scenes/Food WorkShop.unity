@@ -330,7 +330,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40006675}
   m_CullTransparentMesh: 1
---- !u!1 &159627662
+--- !u!1 &267080236
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -338,43 +338,56 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 159627668}
-  - component: {fileID: 159627667}
-  - component: {fileID: 159627666}
-  - component: {fileID: 159627665}
-  - component: {fileID: 159627664}
-  - component: {fileID: 159627663}
+  - component: {fileID: 267080243}
+  - component: {fileID: 267080242}
+  - component: {fileID: 267080241}
+  - component: {fileID: 267080240}
+  - component: {fileID: 267080239}
+  - component: {fileID: 267080238}
+  - component: {fileID: 267080237}
   m_Layer: 6
-  m_Name: Cube (1)
+  m_Name: Shrink_Cube
   m_TagString: FoodItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &159627663
+--- !u!114 &267080237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159627662}
+  m_GameObject: {fileID: 267080236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33146aa0c6f82146ba345c1f039ba99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodEffectStack
+--- !u!114 &267080238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267080236}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c1aa84103c016d42b19c2c63672f923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 7efb7e0cf7b4b86498c6213e970c4a74, type: 2}
-  debugMode: 0
+  debugMode: 1
   onGrounded:
     m_PersistentCalls:
       m_Calls: []
---- !u!54 &159627664
+--- !u!54 &267080239
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159627662}
+  m_GameObject: {fileID: 267080236}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -395,13 +408,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &159627665
+--- !u!65 &267080240
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159627662}
+  m_GameObject: {fileID: 267080236}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -416,13 +429,13 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &159627666
+--- !u!23 &267080241
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159627662}
+  m_GameObject: {fileID: 267080236}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -465,24 +478,24 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &159627667
+--- !u!33 &267080242
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159627662}
+  m_GameObject: {fileID: 267080236}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &159627668
+--- !u!4 &267080243
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159627662}
+  m_GameObject: {fileID: 267080236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.61, y: 6.591, z: -1.5337548}
+  m_LocalPosition: {x: -1.16, y: 6.591, z: -1.5337548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2254,8 +2267,9 @@ GameObject:
   - component: {fileID: 1296564315}
   - component: {fileID: 1296564319}
   - component: {fileID: 1296564320}
+  - component: {fileID: 1296564321}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: Grow_Cube
   m_TagString: FoodItems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2348,7 +2362,7 @@ Transform:
   m_GameObject: {fileID: 1296564314}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.79, y: 6.591, z: -1.5337548}
+  m_LocalPosition: {x: 1.06, y: 6.591, z: -1.5337548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2394,10 +2408,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 71ffb4751a9c0254f9c7bdf55ed8f3cd, type: 2}
-  debugMode: 1
+  debugMode: 0
   onGrounded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1296564321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296564314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33146aa0c6f82146ba345c1f039ba99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodEffectStack
 --- !u!1 &1434430633
 GameObject:
   m_ObjectHideFlags: 0
@@ -3840,7 +3866,7 @@ SceneRoots:
   - {fileID: 5356638471283137033}
   - {fileID: 673234186}
   - {fileID: 1296564318}
-  - {fileID: 159627668}
+  - {fileID: 267080243}
   - {fileID: 342794794}
   - {fileID: 1540977924}
   - {fileID: 1481489721}

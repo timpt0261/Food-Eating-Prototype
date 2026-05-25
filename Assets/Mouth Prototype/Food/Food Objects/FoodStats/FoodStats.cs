@@ -9,7 +9,8 @@ public class FoodStats : ScriptableObject
     public int id;
     public string name;
     public float scale;
-    public float weight; 
-    public List<FoodEffect> effects;
+    public float weight;
+    public float value;
+    public List<Effect> effects; // treat effects as queue or stack
     
 }

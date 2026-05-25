@@ -38,11 +38,7 @@ public class HeadMovment : MonoBehaviour
 		}
 
 	}
-
-	void FixedUpdate()
-	{
-		// HeadSway();
-	}
+	
 
 	private void HeadSway()
 	{
