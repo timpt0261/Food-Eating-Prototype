@@ -1,6 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 
 [CreateAssetMenu(fileName = "Scalable", menuName = "FoodEffect/Scalable")]
@@ -30,8 +30,17 @@ public class Scalable : Effect
     [field: SerializeField] public Ease endScaleEase = Ease.Linear;
     
     [Header("Rigidbody")]
-    [field:SerializeField] public bool _isMassChanged = true;
+    
+    private Rigidbody _rbFoodObject;
+    [field:SerializeField] public bool isMassChanged = true;
+    
+    [field: SerializeField] public bool direction = true;
 
+    public override void Intialize(FoodObject foodObject, UnityEvent activeEvent)
+    {
+        base.Intialize(foodObject, activeEvent);
+        _rbFoodObject = foodObject.GetComponent<Rigidbody>();
+    }
 
     public override void Activate()
     {
@@ -48,7 +57,15 @@ public class Scalable : Effect
         }
 
         this._startingScale = this._foodObject.transform.localScale;
-        if (this._isMassChanged) this._foodObject.Rigidbody.mass *= targetScale;
+
+        if (this.isMassChanged)
+        {
+            this._foodObject.Rigidbody.mass = direction
+                ? this._foodObject.Rigidbody.mass * targetScale
+                : this._foodObject.Rigidbody.mass / targetScale;
+        }
+
+        
         this._foodObject.transform.DOScale(targetScale, this.startSpeed).SetEase(this.startScaleEase);
         
     }
@@ -61,7 +78,13 @@ public class Scalable : Effect
         if (this.isEffectTimed)
             this._effectTimer.Stop();
 
-        if (this._isMassChanged) this._foodObject.Rigidbody.mass /= targetScale;
+        if (this.isMassChanged)
+        {
+            this._foodObject.Rigidbody.mass = direction
+                ? this._foodObject.Rigidbody.mass / targetScale
+                : this._foodObject.Rigidbody.mass * targetScale;
+        }
+
         this._foodObject.transform.DOScale(_startingScale, this.endSpeed).SetEase(this.endScaleEase);
 
         this._effectCoolDownTimer.Reset();

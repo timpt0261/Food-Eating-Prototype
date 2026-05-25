@@ -16,10 +16,11 @@ MonoBehaviour:
   isEffectTimed: 1
   effectDuration: 5
   effectCooldown: 3
-  stateToActivateFoodEffect: 3
+  stateToActivateFoodEffect: 0
   targetScale: 0.75
   startSpeed: 1.5
   startScaleEase: 31
   endSpeed: 0.75
   endScaleEase: 32
-  _isMassChanged: 1
+  isMassChanged: 1
+  direction: 1
