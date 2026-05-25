@@ -35,6 +35,16 @@ public abstract class Effect : ScriptableObject
     [Header("State To Activate")] [feild: SerializeField]
     public FOOD_EFFECT_ACTIVE stateToActivateFoodEffect = FOOD_EFFECT_ACTIVE.GROUND;
 
+    
+    [Header("Rigidbody")]
+   
+    [field:SerializeField] public bool isMassChanged = true;
+    [field: SerializeField] public bool isMassChangeInverse = true;
+    
+    [field: SerializeField] public Vector3 direction = Vector3.down;
+     protected Rigidbody _rbFoodObject;
+     
+     
     // External Game Objects
     protected HandMovement _player;
     protected FoodObject _foodObject;
@@ -46,6 +56,7 @@ public abstract class Effect : ScriptableObject
         if(foodObject == null) return;
         if(this._foodObject != null) return;
         this._foodObject = foodObject;
+        _rbFoodObject = foodObject.GetComponent<Rigidbody>();
         
         AddMaterial(); // Update Food Object Render
         
@@ -79,6 +90,11 @@ public abstract class Effect : ScriptableObject
         
         if(this._effectCoolDownTimer.IsRunning) 
             this._effectCoolDownTimer.Tick(deltaTime);
+    }
+
+    protected virtual void Float()
+    {
+        
     }
 
     protected virtual void AddMaterial()

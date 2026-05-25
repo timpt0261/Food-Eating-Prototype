@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -19,12 +20,17 @@ public class FoodObject : MonoBehaviour
 		set => _interactor = value;
 	}
 
-
+	[Header("RigidBody Physics")]
 	public Rigidbody Rigidbody
 	{
 		get => _rigidbody;
 		set => _rigidbody = value;
 	}
+	
+	[Header("Gravity")]
+	[field:SerializeField] private Vector3 _direction = Vector3.up;
+	[Range(-5f, 5f) ]
+	[field:SerializeField] private float intensity = 1f;
 
 	// Stats
 	[field: SerializeField] private FoodStats stats;
@@ -68,6 +74,7 @@ public class FoodObject : MonoBehaviour
 	private void Start()
 	{
 		_rigidbody = GetComponent<Rigidbody>();
+		_rigidbody.freezeRotation  = true;
 		_collider = GetComponent<Collider>();
 		_foodObjState = FOOD_OBJ_STATE.GROUNDED;
 
@@ -79,50 +86,75 @@ public class FoodObject : MonoBehaviour
 
 	private void Update()
 	{
+		//HandleFoodEffectStack();
+	}
+
+	private void HandleFoodEffectStack()
+	{
 		if(this._foodEffectsActive.Count <= 0) return;
 		foreach (Effect effect in _foodEffectsActive )
 			effect.Tick(Time.deltaTime);
-		
 	}
-
 
 
 	private void FixedUpdate()
 	{
+		if(_rigidbody.position.y is < -10 or > 10 ) Destroy(this.gameObject);
 		
+		if (!_rigidbody.useGravity)
+		{
+			var targetPosition = _direction;
+			_rigidbody.AddForce(_direction * intensity, ForceMode.VelocityChange);
+		}
+
+		
+		
+		HandleFoodObjectState();
+	}
+
+	#region RigidBody_Handling
+	
+	private void HandleFoodObjectState()
+	{
 		if (this._interactor)
 		{
-			UpdateFoodObjectState(FOOD_OBJ_STATE.GRABBED); 
+			UpdateFoodObjectState(FOOD_OBJ_STATE.GRABBED);
 			return;
 		}
 		
 		if (_isFoodObjectTouchingSurface)
 		{
-			UpdateFoodObjectState(FOOD_OBJ_STATE.GROUNDED); 
+			UpdateFoodObjectState(FOOD_OBJ_STATE.GROUNDED);
 			return;
 		}
 
 		if (_isPlayerEatingObject)
-		{	
+		{
 			UpdateFoodObjectState(FOOD_OBJ_STATE.EATEN);
 			return;
 		}
 
 		if (this._rigidbody.useGravity)
 		{
-			UpdateFoodObjectState(FOOD_OBJ_STATE.DROPPED); 
+			UpdateFoodObjectState(FOOD_OBJ_STATE.DROPPED);
 			return;
 		}
 		
 		UpdateFoodObjectState(FOOD_OBJ_STATE.AIR);
-		
-			
 	}
-	
+
+	private void Float(bool active)
+	{
+		
+	}
+
+
+	#endregion
 	
 	private void RegisterFoodEffectsFromStats()
 	{
 		// get all effects to have a refernce instance of food object and food stats
+		if(stats == null)return;
 		foreach (Effect effect in stats.effects)
 		{
 			switch (effect.stateToActivateFoodEffect)
