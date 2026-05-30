@@ -11,7 +11,7 @@ public class HandPickUp : MonoBehaviour
 	private bool canPlayerHoldObject;
 
 	[Header("Collider Handling")]
-	[SerializeField] private Transform _interactionPoint;
+	[SerializeField] private UnityEngine.Transform _interactionPoint;
 	[SerializeField] private Vector3 _interactionPointSize;
 	[SerializeField] private LayerMask _interactableMask;
 

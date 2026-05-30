@@ -378,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: 1, z: 0}
   intensity: 1
+  _forceMode: 1
   stats: {fileID: 11400000, guid: 7efb7e0cf7b4b86498c6213e970c4a74, type: 2}
   debugMode: 1
   onGrounded:
@@ -800,6 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: 1, z: 0}
   intensity: 1
+  _forceMode: 1
   stats: {fileID: 0}
   debugMode: 0
   onGrounded:
@@ -2162,6 +2164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: 1, z: 0}
   intensity: 0.1
+  _forceMode: 1
   stats: {fileID: 0}
   debugMode: 1
   onGrounded:
@@ -2281,7 +2284,7 @@ Transform:
   m_GameObject: {fileID: 1112097303}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.16, y: 6.591, z: -1.5337548}
+  m_LocalPosition: {x: -1.16, y: 5, z: -1.5337548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2586,6 +2589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: 1, z: 0}
   intensity: 1
+  _forceMode: 1
   stats: {fileID: 11400000, guid: 71ffb4751a9c0254f9c7bdf55ed8f3cd, type: 2}
   debugMode: 0
   onGrounded:
@@ -2903,6 +2907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: 1, z: 0}
   intensity: 1
+  _forceMode: 1
   stats: {fileID: 0}
   debugMode: 0
   onGrounded:

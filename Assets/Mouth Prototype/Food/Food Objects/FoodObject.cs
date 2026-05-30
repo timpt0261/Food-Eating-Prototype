@@ -3,7 +3,6 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -20,17 +19,12 @@ public class FoodObject : MonoBehaviour
 		set => _interactor = value;
 	}
 
-	[Header("RigidBody Physics")]
+
 	public Rigidbody Rigidbody
 	{
 		get => _rigidbody;
 		set => _rigidbody = value;
 	}
-	
-	[Header("Gravity")]
-	[field:SerializeField] private Vector3 _direction = Vector3.up;
-	[Range(-5f, 5f) ]
-	[field:SerializeField] private float intensity = 1f;
 
 	// Stats
 	[field: SerializeField] private FoodStats stats;
@@ -38,7 +32,13 @@ public class FoodObject : MonoBehaviour
 		get => stats;
 		
 	}
-	private List<Effect> _foodEffectsActive = new List<Effect>();
+
+	// Mesh
+	[field: SerializeField] private Dictionary<int, Material> effectMaterials;
+
+	// SFX
+	
+
 	
 	// Collision
 	private int _grabCounter = 0;
@@ -56,25 +56,24 @@ public class FoodObject : MonoBehaviour
 	
 	private FOOD_OBJ_STATE _foodObjState = FOOD_OBJ_STATE.GROUNDED;
 
-	[Header ("Event Handling")]
-	[field: SerializeField] internal UnityEvent onGrounded;
-	internal UnityEvent onGrab;
-	internal UnityEvent onEaten;
-	internal UnityEvent onDropped;
-	internal UnityEvent onAir;
+	[Header("Event Handling")]
+	private UnityEvent onGrounded = new UnityEvent();
+	private UnityEvent onGrab    = new UnityEvent();
+	private UnityEvent onEaten   = new UnityEvent();
+	private UnityEvent onDropped = new UnityEvent();
+	private UnityEvent onAir     = new UnityEvent();
+
+	// Public accessors — EffectProcessor subscribes via these.
+	public UnityEvent OnGrounded => onGrounded;
+	public UnityEvent OnGrab     => onGrab;
+	public UnityEvent OnEaten    => onEaten;
+	public UnityEvent OnDropped  => onDropped;
+	public UnityEvent OnAir      => onAir;
+
 	
-
-	void Awake()
-	{
-		RegisterFoodEffectsFromStats();
-	}
-
-	
-
 	private void Start()
 	{
 		_rigidbody = GetComponent<Rigidbody>();
-		_rigidbody.freezeRotation  = true;
 		_collider = GetComponent<Collider>();
 		_foodObjState = FOOD_OBJ_STATE.GROUNDED;
 
@@ -82,105 +81,43 @@ public class FoodObject : MonoBehaviour
 		_dropCounter = 0;
 		_biteCounter = 0;
 		
+	
 	}
-
-	private void Update()
-	{
-		//HandleFoodEffectStack();
-	}
-
-	private void HandleFoodEffectStack()
-	{
-		if(this._foodEffectsActive.Count <= 0) return;
-		foreach (Effect effect in _foodEffectsActive )
-			effect.Tick(Time.deltaTime);
-	}
-
+	
 
 	private void FixedUpdate()
 	{
-		if(_rigidbody.position.y is < -10 or > 10 ) Destroy(this.gameObject);
 		
-		if (!_rigidbody.useGravity)
-		{
-			var targetPosition = _direction;
-			_rigidbody.AddForce(_direction * intensity, ForceMode.VelocityChange);
-		}
-
-		
-		
-		HandleFoodObjectState();
-	}
-
-	#region RigidBody_Handling
-	
-	private void HandleFoodObjectState()
-	{
 		if (this._interactor)
 		{
-			UpdateFoodObjectState(FOOD_OBJ_STATE.GRABBED);
+			UpdateFoodObjectState(FOOD_OBJ_STATE.GRABBED); 
 			return;
 		}
 		
 		if (_isFoodObjectTouchingSurface)
 		{
-			UpdateFoodObjectState(FOOD_OBJ_STATE.GROUNDED);
+			UpdateFoodObjectState(FOOD_OBJ_STATE.GROUNDED); 
 			return;
 		}
 
 		if (_isPlayerEatingObject)
-		{
+		{	
 			UpdateFoodObjectState(FOOD_OBJ_STATE.EATEN);
 			return;
 		}
 
 		if (this._rigidbody.useGravity)
 		{
-			UpdateFoodObjectState(FOOD_OBJ_STATE.DROPPED);
+			UpdateFoodObjectState(FOOD_OBJ_STATE.DROPPED); 
 			return;
 		}
 		
 		UpdateFoodObjectState(FOOD_OBJ_STATE.AIR);
-	}
-
-	private void Float(bool active)
-	{
 		
+			
 	}
-
-
-	#endregion
 	
-	private void RegisterFoodEffectsFromStats()
-	{
-		// get all effects to have a refernce instance of food object and food stats
-		if(stats == null)return;
-		foreach (Effect effect in stats.effects)
-		{
-			switch (effect.stateToActivateFoodEffect)
-			{
-				case Effect.FOOD_EFFECT_ACTIVE.GROUND:
-					effect.Intialize(this, this.onGrounded);
-					break;
-				case Effect.FOOD_EFFECT_ACTIVE.GRABBED:
-					effect.Intialize(this, this.onGrab);
-					break;
-				case Effect.FOOD_EFFECT_ACTIVE.EATEN:
-					effect.Intialize(this, this.onEaten);
-					break;
-				case Effect.FOOD_EFFECT_ACTIVE.DROPPED:
-					effect.Intialize(this, this.onDropped);
-					break;
-				case Effect.FOOD_EFFECT_ACTIVE.AIR:
-					effect.Intialize(this, this.onAir);
-					break;
-				default:
-					effect.Intialize(this, this.onGrounded);
-					break;
-			}
-			this._foodEffectsActive.Add(effect);
-		}
-	}
+	
 	
 
 	#region Food Object State
@@ -193,27 +130,26 @@ public class FoodObject : MonoBehaviour
 		switch (newFoodObjectState)
 		{
 			case FOOD_OBJ_STATE.GROUNDED:
-				this.onGrounded?.Invoke();
+				this.onGrounded.Invoke();
 				break;
 			case FOOD_OBJ_STATE.GRABBED:
-				this.onGrab?.Invoke();
+				this.onGrab.Invoke();
 				this._grabCounter++;
 				break;
-			case FOOD_OBJ_STATE.DROPPED :
-				this.onDropped?.Invoke();
+			case FOOD_OBJ_STATE.DROPPED:
+				this.onDropped.Invoke();
 				this._dropCounter++;
 				break;
 			case FOOD_OBJ_STATE.AIR:
-				this.onAir?.Invoke();
+				this.onAir.Invoke();
 				break;
 			case FOOD_OBJ_STATE.EATEN:
-				this.onEaten?.Invoke();
+				this.onEaten.Invoke();
 				this._biteCounter++;
 				break;
 			default:
 				this.onGrounded.Invoke();
 				break;
-		
 		}
 	}
 	#endregion
@@ -222,7 +158,7 @@ public class FoodObject : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.tag == "Surface" &&  !_isFoodObjectTouchingSurface)
+		if (collision.gameObject.CompareTag("Surface") &&  !_isFoodObjectTouchingSurface)
 		{
 			_isFoodObjectTouchingSurface = true;
 		} 
@@ -236,7 +172,7 @@ public class FoodObject : MonoBehaviour
 
 	private void OnCollisionExit(Collision collision)
 	{
-		if (collision.gameObject.tag == "Surface" && _isFoodObjectTouchingSurface)
+		if (collision.gameObject.CompareTag("Surface") && _isFoodObjectTouchingSurface)
 		{
 			_isFoodObjectTouchingSurface = false;
 		}
@@ -264,9 +200,7 @@ public class FoodObject : MonoBehaviour
 		GUI.Label(new Rect(_debugGuIposition.x, _debugGuIposition.y + (12 * 7), _debugGuIsize.x, _debugGuIsize.y), $"Grab Counter: {this._grabCounter}", _debugGUIStyle); // Grab Counter
 		GUI.Label(new Rect(_debugGuIposition.x, _debugGuIposition.y + (12 * 8), _debugGuIsize.x, _debugGuIsize.y), $"Drop Counter: {this._dropCounter}", _debugGUIStyle); // Drop Counter
 		GUI.Label(new Rect(_debugGuIposition.x, _debugGuIposition.y + (12 * 9), _debugGuIsize.x, _debugGuIsize.y), $"Bite Counter: {this._biteCounter}", _debugGUIStyle); // Bite Counter
-		GUI.Label(new Rect(_debugGuIposition.x, _debugGuIposition.y + (12 * 10), _debugGuIsize.x, _debugGuIsize.y), $"Effect Details: {this._foodEffectsActive}", _debugGUIStyle); // Effect Detaails
 		
-
 	}
 	#endregion
 
@@ -274,9 +208,10 @@ public class FoodObject : MonoBehaviour
 	private void OnDestroy()
 	{
 		onGrounded.RemoveAllListeners();
-		// onEaten.RemoveAllListeners();
-		// onGrab.RemoveAllListeners();
-		// onAir.RemoveAllListeners();
+		onEaten.RemoveAllListeners();
+		onGrab.RemoveAllListeners();
+		onDropped.RemoveAllListeners();
+		onAir.RemoveAllListeners();
 	}
 }
 

@@ -6,7 +6,7 @@ public class PickUpInteraction : MonoBehaviour
 	private HandMovement handMovement;
 
 	[Header("Hold Object")]
-	[SerializeField] Transform holdArea = null;
+	[SerializeField] UnityEngine.Transform holdArea = null;
 	[SerializeField] float holdAreaRadius = 5.0f;
 	[SerializeField] private GameObject go_heldObject = null;
 	private Rigidbody rb_heldObject = null;

@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class RespawnFood : MonoBehaviour
 {
-	[SerializeField] private Transform respawnTransform;
+	[SerializeField] private UnityEngine.Transform respawnTransform;
 
 	[SerializeField] private LayerMask intractableLayerMask;
 

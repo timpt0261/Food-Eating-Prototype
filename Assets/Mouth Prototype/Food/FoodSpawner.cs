@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class FoodSpawner : MonoBehaviour
 {
 
-	[SerializeField] private Transform spawnPoint;
+	[SerializeField] private UnityEngine.Transform spawnPoint;
 
 	[SerializeField] private Vector3 desiredScale;
 	[SerializeField] private float spawnInterval = 5f;
